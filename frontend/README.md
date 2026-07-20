@@ -1,73 +1,49 @@
-# React + TypeScript + Vite
+# CodeSprite Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React 19 + TypeScript + Vite 前端，覆盖公开站点、账号体系、产品工作台与管理后台。桌面端通过 Tauri（`src-tauri/`）复用同一套 UI。
 
-Currently, two official plugins are available:
+## 目录概览
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- `src/site/public/`：官网首页、产品、定价、下载、文档
+- `src/site/auth/`：登录 / 注册与产品门禁
+- `src/site/user/`：用户中心（订阅、账单等）
+- `src/site/admin/`：管理后台
+- `src/App.tsx`：产品工作台（对话、终端等）
+- `src/ui/`：共享 UI 组件
+- `src-tauri/`：Tauri 桌面壳
 
-## React Compiler
+## 开发
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+要求：Node.js 20+（建议与 CI / 本地一致）。
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+默认地址：`http://127.0.0.1:5173`。`vite.config.ts` 将 `/api` 代理到 `http://127.0.0.1:8030`，请先启动后端（`saas_api` 或 `backend`）。
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+常用脚本：
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| 命令 | 说明 |
+|------|------|
+| `npm run dev` | Vite 开发服务器 |
+| `npm run build` | 类型检查并构建到 `dist/` |
+| `npm run preview` | 预览生产构建 |
+| `npm run lint` | ESLint |
+| `npm run desktop:dev` | Tauri 开发模式 |
+| `npm run desktop:build` | 打包桌面客户端 |
+
+桌面端前置条件与打包说明见 [DESKTOP.md](DESKTOP.md)。
+
+## 路由入口
+
+| 路径 | 说明 |
+|------|------|
+| `/`、`/product`、`/pricing`、`/download`、`/docs` | 公开站点 |
+| `/auth/login`、`/auth/register` | 登录注册 |
+| `/app/*`、`/chat/*` | 产品工作台（需登录） |
+| `/me/*` | 用户中心（需登录） |
+| `/admin/*` | 管理后台 |
+
+仓库根目录的 [README.md](../README.md) 与 [DEPLOY.md](../DEPLOY.md) 提供整体架构与部署说明。

@@ -1,31 +1,34 @@
 # CodeSprite / Covixa
 
-CodeSprite 是一个面向开发与运维场景的 AI 工作台。它包含对话式 AI、SSH 远程终端与文件操作、云资产管理、AIOps、账号与订阅管理，以及可独立部署的 Web 前端和 FastAPI 服务。
+CodeSprite（码灵）是面向开发与运维场景的 AI 工作台。仓库同时包含公开品牌站点 **Covixa** 相关能力。核心能力包括对话式 AI、SSH 远程终端与文件操作、云资产管理、AIOps、账号与订阅管理，以及可独立部署的 Web 前端与 FastAPI 服务。
 
 本仓库来自实际产品代码的开源快照。公开版本不包含任何公司的生产配置、账号凭据、运行数据或内部运维资料。
 
 ## 主要能力
 
-- React 19 + Vite Web 界面，包含公开站点、用户中心和管理后台
+- React 19 + Vite Web 界面：公开站点、登录注册、用户中心、管理后台与产品工作台
 - 支持 Ollama 或 OpenAI-compatible 上游的流式 AI 对话
 - SSH 主机连接、终端、文件浏览及凭据加密存储
 - 阿里云资产发现、StarRocks / Flink / DataWorks 资产视图与巡检入口
 - 用户登录、会话、额度、计费、订阅与审计基础能力
-- Web、Docker Compose 和 Windows 桌面构建脚本
+- Tauri 桌面客户端（Windows / macOS）与 Windows 安装包构建脚本
+- Web、Docker Compose 一体化部署
 
 部分第三方能力（短信、微信登录、支付、云资产发现）只有在配置对应服务后才会启用。
 
 ## 仓库结构
 
-- `frontend/`：React + TypeScript + Vite 前端
-- `saas_api/`：完整 SaaS / AIOps FastAPI 服务，生产部署入口为 `app.server:app`
-- `backend/`：轻量本地聊天与管理 API，适合最小化开发场景
-- `cicd/scripts/`：通用阿里云资产发现与资产域初始化脚本
-- `deploy/`：Dockerfile、Compose 和 Nginx 示例
-- `scripts/`：本地开发、Windows 桌面构建及运维辅助脚本
-- `docs/`：产品、UI、AIOps 和设计文档
+| 路径 | 说明 |
+|------|------|
+| `frontend/` | React + TypeScript + Vite 前端；`src-tauri/` 为桌面壳 |
+| `saas_api/` | 完整 SaaS / AIOps FastAPI 服务，生产入口 `app.server:app` |
+| `backend/` | 轻量本地聊天与管理 API，适合最小化开发场景 |
+| `cicd/scripts/` | 阿里云资产发现与资产域初始化脚本 |
+| `deploy/` | Dockerfile、Compose（`local/` / `prod/`）与 Nginx 示例 |
+| `scripts/` | 本地开发、Windows 桌面构建及运维辅助脚本 |
+| `docs/` | 产品、UI、AIOps、计费与设计文档 |
 
-## 快速启动
+## 快速启动（Docker）
 
 要求：
 
@@ -50,10 +53,11 @@ openssl rand -base64 32 | tr '+/' '-_'
 
 ```bash
 docker compose up -d --build
+# 或使用一键脚本：./deploy.sh
 curl -fsS http://127.0.0.1:18031/api/health
 ```
 
-浏览器访问 `http://127.0.0.1:18031/`。停止服务：
+浏览器访问 `http://127.0.0.1:18031/`。停止服务（勿加 `-v`，以免删除数据卷）：
 
 ```bash
 docker compose down
@@ -63,7 +67,7 @@ docker compose down
 
 ## 源码开发
 
-前端：
+### 前端
 
 ```bash
 cd frontend
@@ -71,16 +75,37 @@ npm ci
 npm run dev
 ```
 
-完整 API：
+默认开发地址：`http://127.0.0.1:5173`。Vite 将 `/api` 代理到 `http://127.0.0.1:8030`。
+
+### 完整 API（推荐）
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r saas_api/requirements.txt
+# 按 saas_api/env.example 配置环境变量
 uvicorn app.server:app --app-dir saas_api --host 127.0.0.1 --port 8030
 ```
 
-本地开发前先按 `saas_api/env.example` 配置环境变量。Vite 开发服务器将 `/api` 请求代理到本地 API。
+### 轻量本地 API
+
+```bash
+cd backend
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+uvicorn app.main:app --host 127.0.0.1 --port 8030
+```
+
+### Windows 脚本
+
+仓库提供 PowerShell / CMD 辅助脚本（见 `scripts/`）：
+
+- `start-frontend.cmd` / `start-backend.cmd`：分别启动前端与轻量后端
+- `start-web.cmd`：单进程 Web 模式（API 同时托管前端构建产物）
+- `start-desktop.cmd`：启动 Tauri 桌面端
+
+桌面客户端说明见 [frontend/DESKTOP.md](frontend/DESKTOP.md)。
 
 ## AI 上游
 
@@ -91,7 +116,7 @@ export OLLAMA_BASE_URL=http://127.0.0.1:11434
 export OLLAMA_MODEL=qwen2.5-coder:7b
 ```
 
-也可以通过 `LLM_BASE_URL`、`LLM_API_KEY`、`LLM_MODEL`，或 `LLM_UPSTREAMS_JSON` 配置 OpenAI-compatible 服务。不要把真实 API Key 写入仓库。
+也可通过 `LLM_BASE_URL`、`LLM_API_KEY`、`LLM_MODEL`，或 `LLM_UPSTREAMS_JSON` 配置 OpenAI-compatible 服务。不要把真实 API Key 写入仓库。
 
 ## 云资产发现
 
@@ -104,6 +129,17 @@ export OLLAMA_MODEL=qwen2.5-coder:7b
 - `ASSET_DB_HOST`、`ASSET_DB_PORT`、`ASSET_DB_USER`、`ASSET_DB_PASS`、`ASSET_DB_NAME`
 
 环境 JSON 可参考 `saas_api/app/aiops/templates/example.env.json`。建议使用只读 RAM 账号，并在执行前确认账号权限和目标 Region。
+
+## 相关文档
+
+| 文档 | 内容 |
+|------|------|
+| [DEPLOY.md](DEPLOY.md) | 本地 / 生产部署、备份、升级与回滚 |
+| [SECURITY.md](SECURITY.md) | 安全策略与漏洞报告 |
+| [api.md](api.md) | 轻量后端接口说明 |
+| [cursor-users.md](cursor-users.md) | 面向使用者的操作说明 |
+| [frontend/DESKTOP.md](frontend/DESKTOP.md) | Tauri 桌面客户端 |
+| [docs/](docs/) | 产品需求、UI 规范、AIOps、计费设计 |
 
 ## 安全说明
 
