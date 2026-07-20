@@ -1,0 +1,291 @@
+.billingRoot {
+    --bg-body: #f5f7fb;
+    --bg-card: rgba(255, 255, 255, 0.92);
+    --primary: #7c5cff;
+    --success: #0f9f5f;
+    --text-main: #0f172a;
+    --text-dim: #64748b;
+    --border: rgba(148, 163, 184, 0.22);
+    color: var(--text-main);
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+}
+
+.billingRoot .billingContainer {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 28px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.billingRoot .billingPageHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.billingRoot .billingTitle {
+    margin: 0;
+    font-size: 24px;
+}
+
+.billingRoot .billingSubtitle {
+    margin: 5px 0 0;
+    color: var(--text-dim);
+    font-size: 14px;
+}
+
+.billingRoot .billingConfirmModal {
+    background: #ffffff;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    width: 380px;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+}
+
+.billingRoot .billingCard {
+    box-sizing: border-box;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+}
+
+.billingRoot .billingTopGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: 15px;
+}
+
+.billingRoot .billingBalanceAmount {
+    font-size: 32px;
+    font-weight: 800;
+    margin: 8px 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    letter-spacing: -0.5px;
+}
+
+.billingRoot .billingBtn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    background: var(--primary);
+    color: white;
+    font-size: 13px;
+}
+
+.billingRoot .billingBtnSec {
+    background: #eef2ff;
+    color: #4338ca;
+}
+
+.billingRoot .billingPromo {
+    box-sizing: border-box;
+    background: linear-gradient(180deg, rgba(124, 92, 255, 0.10), rgba(124, 92, 255, 0.03));
+    border: 1px solid rgba(124, 92, 255, 0.18);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+}
+
+.billingRoot .billingPricingGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.billingRoot .billingPriceCard {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.billingRoot .billingPriceCard:hover {
+    transform: translateY(-2px);
+    background: #f8fafc;
+}
+
+.billingRoot .billingPriceCardActive {
+    background: rgba(124, 92, 255, 0.08);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 1px var(--primary);
+}
+
+.billingRoot .billingTabs {
+    display: flex;
+    gap: 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+}
+
+.billingRoot .billingTab {
+    color: var(--text-dim);
+    cursor: pointer;
+}
+
+.billingRoot .billingTabActive {
+    color: #0f172a;
+    border-bottom: 2px solid var(--primary);
+    font-weight: 600;
+}
+
+.billingRoot .billingRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+    font-size: 13px;
+    gap: 10px;
+    align-items: center;
+}
+
+.billingRoot .billingStatusBadge {
+    background: rgba(15, 159, 95, 0.10);
+    color: var(--success);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.billingRoot .billingBlurred {
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+.billingRoot .billingModalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.20);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 18px;
+}
+
+.billingRoot .billingModal {
+    background: #ffffff;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    width: 440px;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+}
+
+.billingRoot .billingStepIndicator {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 24px;
+}
+
+.billingRoot .billingStep {
+    height: 4px;
+    flex: 1;
+    background: rgba(148, 163, 184, 0.24);
+    border-radius: 2px;
+}
+
+.billingRoot .billingStepActive {
+    background: var(--primary);
+}
+
+.billingRoot .billingQrBox {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    width: 180px;
+    height: 180px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.billingRoot .billingChannels {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.billingRoot .billingChBtn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #ffffff;
+    color: var(--text-dim);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.billingRoot .billingChBtnActive {
+    border-color: #1677ff;
+    color: #1677ff;
+    background: rgba(22, 119, 255, 0.1);
+}
+
+.billingRoot .billingBtnPrimary {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.billingRoot .billingSpinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(124, 92, 255, 0.16);
+    border-radius: 50%;
+    border-top-color: var(--primary);
+    animation: spin 1s ease-in-out infinite;
+    margin: 40px auto 20px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.billingRoot .billingLoadingText {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 14px;
+    margin-bottom: 40px;
+}
+
+.billingRoot .billingSuccessIcon {
+    width: 64px;
+    height: 64px;
+    background: rgba(120, 255, 170, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto;
+    color: var(--success);
+    font-size: 32px;
+}

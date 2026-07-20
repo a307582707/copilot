@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Billing - Cashier Step 2 (Verifying)</title>
+<style>
+  :root { --bg-body: #0a0e14; --bg-card: rgba(30, 36, 50, 0.6); --primary: #7c5cff; --success: #78ffaa; --text-main: #f0f0f0; --text-dim: rgba(255, 255, 255, 0.6); --border: rgba(255, 255, 255, 0.1); }
+  body { 
+    background: var(--bg-body); 
+    color: var(--text-main); 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    margin: 0; 
+    padding: 40px; 
+    display: flex; 
+    justify-content: center; 
+  }
+  .container { width: 1000px; filter: blur(5px); }
+  
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 100; }
+  .modal { background: #151b26; border: 1px solid rgba(255,255,255,0.15); width: 440px; border-radius: 20px; padding: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+  
+  .step-indicator { display: flex; gap: 6px; margin-bottom: 24px; }
+  .step { height: 4px; flex: 1; background: rgba(255,255,255,0.1); border-radius: 2px; }
+  .step.active { background: var(--primary); }
+  
+  .spinner {
+    width: 40px; height: 40px; 
+    border: 3px solid rgba(124,92,255,0.3); 
+    border-radius: 50%; 
+    border-top-color: var(--primary); 
+    animation: spin 1s ease-in-out infinite; 
+    margin: 40px auto 20px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  
+  .loading-text { text-align: center; color: var(--text-dim); font-size: 14px; margin-bottom: 40px; }
+</style>
+</head>
+<body>
+
+<!-- 背景：保持旧余额，因为还在验证中 -->
+<div class="container" style="display: flex; flex-direction: column; gap: 24px;">
+  <!-- Mock Header -->
+  <div style="height: 50px; border-bottom: 1px solid rgba(255,255,255,0.1);"></div>
+  <!-- Mock Balance Card -->
+  <div style="background: rgba(30,36,50,0.6); padding: 24px; border-radius: 16px;">
+    <div style="font-size: 42px; font-weight: 800; font-family: monospace;">¥129.00</div>
+  </div>
+</div>
+
+<div class="modal-overlay">
+  <div class="modal">
+    <div style="display:flex; justify-content:space-between; margin-bottom: 20px;">
+      <div style="font-weight: 800; font-size: 18px;">正在确认...</div>
+    </div>
+    
+    <div class="step-indicator">
+      <div class="step active"></div>
+      <div class="step active"></div>
+      <div class="step"></div>
+    </div>
+
+    <div class="spinner"></div>
+    <!-- 仅保留读秒提示 -->
+    <div class="loading-text">
+      请耐心等待 <span id="countdown">(3s)</span>...
+    </div>
+  </div>
+</div>
+
+<script>
+  let count = 3;
+  const el = document.getElementById('countdown');
+  setInterval(() => {
+    count--;
+    if (count > 0) {
+      el.innerText = `(${count}s)`;
+    } else {
+      el.innerText = '...';
+      if(count < -1) count = 3;
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>

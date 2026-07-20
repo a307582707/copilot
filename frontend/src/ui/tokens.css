@@ -1,0 +1,64 @@
+:root {
+  color-scheme: light;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji";
+
+  /* ===== Design Tokens (v1) ===== */
+  --ds-bg: #fbfcfe;
+  --ds-surface-1: #ffffff;
+  --ds-surface-2: #f8fafc;
+  --ds-border: #e2e8f0;
+
+  --ds-text: #0f172a;
+  --ds-text-muted: #475569;
+  --ds-text-muted-2: #64748b;
+
+  --ds-accent: #7c5cff;
+  --ds-accent-bg: rgba(124, 92, 255, 0.10);
+  --ds-danger: #ff4d6d;
+  --ds-success: #2bd576;
+
+  --ds-radius-sm: 10px;
+  --ds-radius-md: 12px;
+  --ds-radius-lg: 14px;
+
+  --ds-space-1: 4px;
+  --ds-space-2: 8px;
+  --ds-space-3: 12px;
+  --ds-space-4: 16px;
+  --ds-space-5: 20px;
+
+  --ds-font-11: 11px;
+  --ds-font-12: 12px;
+  --ds-font-14: 14px;
+
+  --ds-shadow-1: 0 12px 32px rgba(15, 23, 42, 0.07);
+
+  --ds-focus-ring: 0 0 0 4px rgba(124, 92, 255, 0.12);
+  --ds-focus-border: rgba(124, 92, 255, 0.55);
+
+  /* ===== Backwards-compatible aliases (existing styles rely on these) ===== */
+  --bg: var(--ds-bg);
+  --panel: var(--ds-surface-1);
+  --panel-2: var(--ds-surface-2);
+  --border: var(--ds-border);
+  --text: var(--ds-text);
+  --muted: var(--ds-text-muted);
+  --muted-2: var(--ds-text-muted-2);
+  --accent: var(--ds-accent);
+  --accent-2: var(--ds-accent-bg);
+  --danger: var(--ds-danger);
+  --ok: var(--ds-success);
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+}
+
+

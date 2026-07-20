@@ -1,0 +1,28 @@
+{
+  "ok": true,
+  "assets": [
+    {
+      "platform": "windows",
+      "kind": "installer",
+      "version": "0.1.0",
+      "fileName": "CodeSpriteSetup-0.1.0.exe",
+      "url": "/downloads/CodeSpriteSetup-0.1.0.exe",
+      "sha256": "REPLACE_ME",
+      "sizeBytes": 0,
+      "publishedAt": "2025-12-29"
+    },
+    {
+      "platform": "windows",
+      "kind": "portable",
+      "version": "0.1.0",
+      "fileName": "codesprite-0.1.0.exe",
+      "url": "/downloads/codesprite-0.1.0.exe",
+      "sha256": "REPLACE_ME",
+      "sizeBytes": 0,
+      "publishedAt": "2025-12-29"
+    }
+  ]
+}
+
+
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Billing UI Design Index</title>
+<style>
+  body { 
+    background: #0a0e14; 
+    color: #f0f0f0; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    padding: 40px; 
+    max-width: 600px; 
+    margin: 0 auto; 
+  }
+  h1 { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; }
+  ul { list-style: none; padding: 0; }
+  li { margin: 15px 0; }
+  a { display: block; padding: 15px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.2s; }
+  a:hover { background: rgba(124, 92, 255, 0.2); border-color: #7c5cff; }
+  .desc { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 5px; }
+</style>
+</head>
+<body>
+  <h1>充值中心 UI 设计稿 (自动到账版 v2)</h1>
+  <ul>
+    <li>
+      <a href="./01-overview.html" target="_blank">
+        01. 概览 (Overview)
+        <div class="desc">余额/订阅概览。字体优化：更现代、抗锯齿更清晰。</div>
+      </a>
+    </li>
+    <li>
+      <a href="./02-cashier-step1-scan.html" target="_blank">
+        02. 收银台 - 扫码 (Step 1)
+        <div class="desc">用户扫码，点击“我已支付”。</div>
+      </a>
+    </li>
+    <li>
+      <a href="./03-cashier-step2-verifying.html" target="_blank">
+        03. 收银台 - 验证 (Step 2)
+        <div class="desc"><b>优化</b>：精简文案，只保留“请耐心等待 (3s)...”动画。</div>
+      </a>
+    </li>
+    <li>
+      <a href="./04-cashier-step3-done.html" target="_blank">
+        04. 收银台 - 完成 (Step 3)
+        <div class="desc">背景余额自动刷新 + 到账反馈。</div>
+      </a>
+    </li>
+    <li>
+      <a href="./05-subscription-confirm.html" target="_blank">
+        05. 订阅确认 (Confirm)
+        <div class="desc">余额扣费二次确认弹窗。</div>
+      </a>
+    </li>
+  </ul>
+</body>
+</html>

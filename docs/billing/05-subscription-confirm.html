@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Billing - Subscription Confirm</title>
+<style>
+  :root { --bg-body: #0a0e14; --bg-card: rgba(30, 36, 50, 0.6); --primary: #7c5cff; --text-main: #f0f0f0; --text-dim: rgba(255, 255, 255, 0.6); }
+  body { 
+    background: var(--bg-body); 
+    color: var(--text-main); 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    margin: 0; 
+    padding: 40px; 
+    display: flex; 
+    justify-content: center; 
+  }
+  .container { width: 1000px; filter: blur(5px); }
+  
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 100; }
+  .modal { background: #151b26; border: 1px solid rgba(255,255,255,0.15); width: 380px; border-radius: 16px; padding: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+  
+  .confirm-title { font-size: 18px; font-weight: 800; margin-bottom: 12px; }
+  .confirm-text { color: var(--text-dim); font-size: 14px; line-height: 1.6; margin-bottom: 24px; }
+  
+  .btn-group { display: flex; gap: 12px; }
+  .btn { flex: 1; padding: 10px; border-radius: 10px; border: none; font-weight: 600; cursor: pointer; }
+  .btn-cancel { background: rgba(255,255,255,0.1); color: white; }
+  .btn-confirm { background: var(--primary); color: white; }
+</style>
+</head>
+<body>
+
+<div class="container" style="height: 800px; background: rgba(255,255,255,0.05);"></div>
+
+<div class="modal-overlay">
+  <div class="modal">
+    <div class="confirm-title">确认续费？</div>
+    <div class="confirm-text">
+      将从您的余额中扣除 <b>¥99.00</b> 用于续费 1 个月 PRO 会员。<br>
+      当前余额：¥129.00
+    </div>
+    
+    <div class="btn-group">
+      <button class="btn btn-cancel">取消</button>
+      <button class="btn btn-confirm">确认支付</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

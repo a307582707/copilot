@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "码灵",
+  "version": "0.1.0",
+  "identifier": "com.example.cursorlike",
+  "build": {
+    "beforeDevCommand": "node ./scripts/ensure-tauri-icons.mjs && npm run dev -- --host 127.0.0.1 --port 5173",
+    "beforeBuildCommand": "node ./scripts/ensure-tauri-icons.mjs && npm run build",
+    "devUrl": "http://127.0.0.1:5173",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "码灵",
+        "width": 1200,
+        "height": 800,
+        "minWidth": 980,
+        "minHeight": 640,
+        "center": true,
+        "maximized": true,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "category": "DeveloperTool"
+  }
+}
+
+

@@ -1,0 +1,53 @@
+services:
+  app:
+    build:
+      context: ../..
+      dockerfile: deploy/local/Dockerfile
+    image: ${CODESPRITE_IMAGE:-codesprite:local}
+    container_name: codesprite-app
+    environment:
+      PORT: "8030"
+      SERVE_FRONTEND: "1"
+      RELEASES_JSON: /app/releases.json
+      AUTH_SECRET: ${AUTH_SECRET:?set AUTH_SECRET in .env}
+      CRED_ENC_KEY: ${CRED_ENC_KEY:?set CRED_ENC_KEY in .env}
+      ADMIN_USER: ${ADMIN_USER:-admin}
+      ADMIN_PASS: ${ADMIN_PASS:?set ADMIN_PASS in .env}
+      COOKIE_SECURE: ${COOKIE_SECURE:-1}
+      DB_REQUIRE_MYSQL: "1"
+      DB_DSN: mysql+pymysql://${MYSQL_USER:-codesprite}:${MYSQL_PASSWORD:?set MYSQL_PASSWORD in .env}@mysql:3306/${MYSQL_DATABASE:-codesprite}?charset=utf8mb4
+      DB_PATH: /data/codesprite.db
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+    ports:
+      - "127.0.0.1:${APP_PORT:-18030}:8030"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ${APP_DATA_DIR:-./data/app}:/data
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.0
+    container_name: codesprite-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?set MYSQL_ROOT_PASSWORD in .env}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-codesprite}
+      MYSQL_USER: ${MYSQL_USER:-codesprite}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?set MYSQL_PASSWORD in .env}
+      TZ: ${TZ:-UTC}
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --default-time-zone=+00:00
+      - --sql-mode=STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
+    volumes:
+      - ${MYSQL_DATA_DIR:-./data/mysql}:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    restart: unless-stopped

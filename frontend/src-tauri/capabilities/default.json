@@ -1,0 +1,11 @@
+{
+  "$schema": "https://schema.tauri.app/capabilities/2",
+  "identifier": "default",
+  "description": "Default capabilities (MVP: UI only).",
+  "windows": ["main"],
+  "permissions": [
+    "core:default"
+  ]
+}
+
+

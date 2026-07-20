@@ -1,0 +1,58 @@
+services:
+  codesprite-dev:
+    container_name: codesprite-dev
+    build:
+      context: ../..
+      dockerfile: deploy/local/Dockerfile
+    environment:
+      PORT: "8030"
+      SERVE_FRONTEND: "1"
+      RELEASES_JSON: /app/releases.json
+      AUTH_SECRET: ${AUTH_SECRET:?set AUTH_SECRET in .env}
+      CRED_ENC_KEY: ${CRED_ENC_KEY:?set CRED_ENC_KEY in .env}
+      ADMIN_USER: ${ADMIN_USER:-admin}
+      ADMIN_PASS: ${ADMIN_PASS:?set ADMIN_PASS in .env}
+      COOKIE_SECURE: ${COOKIE_SECURE:-0}
+      DB_REQUIRE_MYSQL: "1"
+      DB_DSN: mysql+pymysql://${MYSQL_USER:-codesprite}:${MYSQL_PASSWORD:?set MYSQL_PASSWORD in .env}@mysql:3306/${MYSQL_DATABASE:-codesprite}?charset=utf8mb4
+      DB_PATH: /data/codesprite.db
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+    ports:
+      # Host port 18031 avoids clashing with existing stacks (nginx 80/443, codesprite-api 18030).
+      - "18031:8030"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - codesprite_app_data:/data
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql:
+    image: mysql:8.0
+    container_name: codesprite-mysql-dev
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?set MYSQL_ROOT_PASSWORD in .env}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-codesprite}
+      MYSQL_USER: ${MYSQL_USER:-codesprite}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?set MYSQL_PASSWORD in .env}
+      TZ: ${TZ:-UTC}
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --default-time-zone=+08:00
+    volumes:
+      - codesprite_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    restart: unless-stopped
+
+volumes:
+  codesprite_mysql_data:
+  codesprite_app_data:
+
+

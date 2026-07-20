@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Billing - Overview</title>
+<style>
+  :root { --bg-body: #0a0e14; --bg-card: rgba(30, 36, 50, 0.6); --primary: #7c5cff; --success: #78ffaa; --text-main: #f0f0f0; --text-dim: rgba(255, 255, 255, 0.6); --border: rgba(255, 255, 255, 0.1); }
+  body { 
+    background: var(--bg-body); 
+    color: var(--text-main); 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    margin: 0; 
+    padding: 40px; 
+    display: flex; 
+    justify-content: center; 
+  }
+  .container { width: 1000px; display: flex; flex-direction: column; gap: 24px; }
+  .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; /* Reduced padding from 24px */ }
+  h1 { margin: 0; font-size: 24px; }
+  p { margin: 5px 0 0; color: var(--text-dim); font-size: 14px; }
+  
+  /* Adjusted for compactness */
+  .top-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; } /* Reduced gap */
+  .balance-amount { font-size: 32px; font-weight: 800; margin: 8px 0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; letter-spacing: -0.5px; }
+  
+  .btn { padding: 8px 16px; border-radius: 8px; font-weight: 600; border: none; cursor: pointer; background: var(--primary); color: white; font-size: 13px; }
+  .btn-sec { background: rgba(255,255,255,0.1); margin-left: 10px; }
+  
+  /* Promo is now the hero section */
+  .promo { 
+    background: linear-gradient(180deg, rgba(124,92,255,0.18), rgba(124,92,255,0.06)); 
+    border: 1px solid rgba(124,92,255,0.4); 
+    border-radius: 16px; 
+    padding: 24px; 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 15px; }
+  .price-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: all 0.2s; }
+  .price-card:hover { transform: translateY(-2px); background: rgba(255,255,255,0.06); }
+  .price-card.active { background: rgba(124,92,255,0.2); border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
+  
+  .tabs { display: flex; gap: 20px; border-bottom: 1px solid var(--border); margin-bottom: 15px; padding-bottom: 10px; }
+  .tab.active { color: white; border-bottom: 2px solid var(--primary); font-weight: 600; }
+  .tab { color: var(--text-dim); cursor: pointer; }
+  .row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 13px; }
+  .status-badge { background: rgba(120, 255, 170, 0.15); color: var(--success); padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+    <div><h1>充值中心</h1><p>余额可用于订阅续费及按量服务抵扣。</p></div>
+    <div style="font-size:12px; color:var(--text-dim);">当前用户: user@example.com</div>
+  </div>
+
+  <!-- 1. 充值区域 (最显眼) -->
+  <div class="promo">
+    <div style="display:flex; justify-content:space-between; align-items: center;">
+      <div style="font-weight:800; font-size: 18px;">🔥 首月特惠 <span style="font-weight:400; font-size:13px; opacity:0.8; margin-left:10px;">充值余额</span></div>
+      <span style="background:var(--primary); color:white; font-size:12px; padding:4px 10px; border-radius:6px; font-weight: bold;">仅限首单</span>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card active">
+        <div style="font-size:32px; font-weight:800;">¥99</div>
+        <div style="color:var(--success); font-size:14px; font-weight:bold; margin-top: 4px;">送 ¥30</div>
+        <div style="font-size:12px; color:var(--text-dim); margin-top:8px;">实得 ¥129</div>
+      </div>
+      <div class="price-card">
+        <div style="font-size:32px; font-weight:800;">¥199</div>
+        <div style="color:var(--success); font-size:14px; font-weight:bold; margin-top: 4px;">送 ¥80</div>
+        <div style="font-size:12px; color:var(--text-dim); margin-top:8px;">实得 ¥279</div>
+      </div>
+      <div class="price-card">
+        <div style="font-size:32px; font-weight:800;">¥499</div>
+        <div style="color:var(--success); font-size:14px; font-weight:bold; margin-top: 4px;">送 ¥250</div>
+        <div style="font-size:12px; color:var(--text-dim); margin-top:8px;">实得 ¥749</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 资产概览 (次要，紧凑布局) -->
+  <div class="top-grid">
+    <div class="card" style="display:flex; justify-content: space-between; align-items: center;">
+      <div>
+        <div style="color:var(--text-dim); font-size:12px; font-weight:bold;">当前余额</div>
+        <div class="balance-amount">¥129.00</div>
+        <div style="font-size:12px; color:var(--text-dim); opacity: 0.7;">支持极速到账</div>
+      </div>
+      <div style="text-align: right;">
+          <!-- 装饰性图标或留白 -->
+      </div>
+    </div>
+    
+    <div class="card" style="display:flex; justify-content: space-between; align-items: center;">
+      <div>
+        <div style="color:var(--text-dim); font-size:12px; font-weight:bold;">订阅状态</div>
+        <div style="display:flex; align-items:center; gap:10px; margin:8px 0;">
+          <span style="font-size:24px; font-weight:800;">PRO</span>
+          <span class="status-badge">已开通</span>
+        </div>
+        <div style="font-size:12px; color:var(--text-dim); opacity: 0.7;">2026-02-15 到期</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <button class="btn">续费 1 月</button>
+        <button class="btn btn-sec" style="margin:0;">续费 1 年</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 历史记录 -->
+  <div class="card" style="padding-top:10px;">
+    <div class="tabs">
+      <div class="tab active">充值订单</div>
+      <div class="tab">资金流水</div>
+    </div>
+    <div class="row">
+      <div style="width:140px;">2026-01-12 10:30</div>
+      <div style="flex:1;">支付宝充值 (订单号: 8372...)</div>
+      <div style="width:100px; text-align:right; font-weight:bold;">¥99.00</div>
+      <div style="width:80px; text-align:right; color:var(--success);">已到账</div>
+    </div>
+    <div class="row">
+      <div style="width:140px;">2025-12-15 14:20</div>
+      <div style="flex:1;">微信充值 (含赠送)</div>
+      <div style="width:100px; text-align:right; font-weight:bold;">¥199.00</div>
+      <div style="width:80px; text-align:right; color:var(--success);">已到账</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
