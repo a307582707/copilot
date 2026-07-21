@@ -31,7 +31,7 @@ from .security import hash_password, verify_password
 from sqlalchemy import func, select
 from sqlalchemy.exc import SQLAlchemyError
 
-app = FastAPI(title='cursor-like backend')
+app = FastAPI(title='CodeSprite backend')
 
 # --- Minimal auth (admin console MVP) ---
 # Notes:

@@ -1,6 +1,6 @@
-# 接口文档（backend API）
+# 接口文档（轻量 backend API）
 
-本文件用于你后续上传 GitLab 维护：描述 **后端 FastAPI** 提供的接口、请求参数、返回结构与示例。
+描述仓库 `backend/` 轻量 FastAPI 提供的接口、请求参数、返回结构与示例。完整 SaaS / AIOps 能力见 `saas_api/`。
 
 ---
 

@@ -9,7 +9,6 @@
 - `docs/billing-design.md`
 - `docs/product/codesprite-saas-design.md`
 - `docs/product/admin-console-mvp-spec.md`
-- `docs/sre/codesprite-user-storage.md`
 - `saas_api/app/db.py`
 - `saas_api/app/saas.py`
 

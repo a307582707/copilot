@@ -84,6 +84,8 @@ install -d -m 750 ./data/app ./data/mysql ./backups
 
 ### 3.2 启动
 
+默认使用 `docker-compose.yml`（已内置 MySQL）。若只要独立 MySQL（含 binlog、`+08:00` 时区），可用可选文件 `docker-compose.mysql.yml`。
+
 ```bash
 docker compose config --quiet
 docker compose up -d --build

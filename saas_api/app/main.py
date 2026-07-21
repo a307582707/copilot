@@ -22,7 +22,7 @@ from .accounting import beta_max_concurrent_per_user, beta_max_output_chars, bet
 from .db import connect, init_db, db_require_mysql
 from .saas import current_user, SESSION_COOKIE
 
-app = FastAPI(title='cursor-like backend')
+app = FastAPI(title='CodeSprite backend')
 
 _DB = connect()
 init_db(_DB)

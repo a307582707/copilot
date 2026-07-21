@@ -8,7 +8,7 @@
 事实来源：
 
 - Tauri 壳：`frontend/src-tauri/src/main.rs`、`frontend/src-tauri/tauri.conf.json`
-- API Base 配置：`frontend/src/App.tsx`（`API_BASE_KEY=cursor_like_api_base_v1`，点击后端状态 pill 打开）
+- API Base 配置：`frontend/src/App.tsx`（`API_BASE_KEY=codesprite_api_base_v1`，点击后端状态 pill 打开）
 - Windows 安装器：`scripts/build-desktop-installer-csharp-wizard.ps1`
 
 ## 1. 桌面端总体架构（现实对齐）

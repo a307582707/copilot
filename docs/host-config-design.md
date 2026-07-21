@@ -308,7 +308,7 @@ export type Credential = {
 
 ### 11.2 存储键与隔离（建议）
 
-- 聊天模块使用自己的 `cursor_like_chat_state_v1`
+- 聊天模块使用自己的 `codesprite_chat_state_v1`
 - 主机配置模块使用 `host_config_v1`
 - 两者不要混在一个大对象里（降低迁移/损坏风险）
 

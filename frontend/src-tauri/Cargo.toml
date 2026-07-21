@@ -2,9 +2,8 @@
 name = "codesprite"
 version = "0.1.0"
 description = "CodeSprite (码灵) desktop client (Tauri)"
-authors = ["you"]
+authors = ["CodeSprite Contributors"]
 license = "MIT"
-repository = ""
 edition = "2021"
 
 [build-dependencies]

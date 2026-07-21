@@ -1,3 +1,7 @@
+# Optional MySQL-only overlay (binlog + Asia/Shanghai TZ).
+# Default production stack already defines MySQL in docker-compose.yml;
+# use this file only when you need a standalone MySQL service with these extras:
+#   docker compose -f docker-compose.mysql.yml up -d
 services:
   mysql:
     image: mysql:8.0

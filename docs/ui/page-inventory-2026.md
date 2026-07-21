@@ -324,7 +324,7 @@
   - 窗口默认最大化、最小尺寸、devUrl 指向 `http://127.0.0.1:5173`
 - **代码**：`frontend/src-tauri/src/main.rs`（当前仅启动壳）
 
-> 结论：桌面端 UI 实际复用 Web UI（`/app`）。桌面端“设置/后端地址 API Base”属于 Web UI 内的一个配置弹窗（`API_BASE_KEY=cursor_like_api_base_v1`）。
+> 结论：桌面端 UI 实际复用 Web UI（`/app`）。桌面端“设置/后端地址 API Base”属于 Web UI 内的一个配置弹窗（`API_BASE_KEY=codesprite_api_base_v1`）。
 
 ### 7.2 Windows 安装器向导（C# Wizard）
 

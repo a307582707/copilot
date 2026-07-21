@@ -26,7 +26,7 @@ CodeSprite（码灵）是面向开发与运维场景的 AI 工作台。核心能
 | `cicd/scripts/` | 阿里云资产发现与资产域初始化脚本 |
 | `deploy/` | Dockerfile、Compose（`local/` / `prod/`）与 Nginx 示例 |
 | `scripts/` | 本地开发、Windows 桌面构建及运维辅助脚本 |
-| `docs/` | 产品、UI、AIOps、计费与设计文档 |
+| `docs/` | 产品、UI、AIOps、计费与设计文档（阶段性 UI 报告见 `docs/ui/archive/`） |
 
 ## 快速启动（Docker）
 
@@ -140,8 +140,8 @@ export OLLAMA_MODEL=qwen2.5-coder:7b
 |------|------|
 | [DEPLOY.md](DEPLOY.md) | 本地 / 生产部署、备份、升级与回滚 |
 | [SECURITY.md](SECURITY.md) | 安全策略与漏洞报告 |
-| [api.md](api.md) | 轻量后端接口说明 |
-| [cursor-users.md](cursor-users.md) | 面向使用者的操作说明 |
+| [docs/api-backend.md](docs/api-backend.md) | 轻量后端接口说明 |
+| [docs/user-guide.md](docs/user-guide.md) | 面向使用者的操作说明 |
 | [frontend/DESKTOP.md](frontend/DESKTOP.md) | Tauri 桌面客户端 |
 | [docs/](docs/) | 产品需求、UI 规范、AIOps、计费设计 |
 
