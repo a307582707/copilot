@@ -71,7 +71,7 @@ chmod 600 .env
 
 - `AUTH_SECRET`：至少 32 字节的随机值，部署后保持稳定
 - `CRED_ENC_KEY`：Fernet key，部署后保持稳定
-- `ADMIN_PASS`：初始管理员密码
+- `ADMIN_PASS`：初始管理员密码（Compose 会同时注入 `ADMIN_PASSWORD`；也可用 `ADMIN_EMAIL` 覆盖默认 `admin@localhost`）
 - `MYSQL_ROOT_PASSWORD`、`MYSQL_PASSWORD`：独立强密码
 - `APP_DATA_DIR`、`MYSQL_DATA_DIR`：宿主机持久化目录
 - `OLLAMA_BASE_URL`：模型服务地址

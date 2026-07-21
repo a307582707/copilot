@@ -567,8 +567,14 @@ async def _send_and_store_code(*, phone: str, purpose: str, user_id: int | None,
 
 
 def ensure_admin_from_env() -> None:
+    # Accept both SaaS (ADMIN_EMAIL / ADMIN_PASSWORD) and Compose
+    # (ADMIN_USER / ADMIN_PASS) conventions so local/prod stacks bootstrap.
     email = (os.environ.get("ADMIN_EMAIL") or "").strip().lower()
-    pwd = (os.environ.get("ADMIN_PASSWORD") or "").strip()
+    if not email:
+        user = (os.environ.get("ADMIN_USER") or "").strip()
+        if user:
+            email = user.lower() if "@" in user else f"{user.lower()}@localhost"
+    pwd = (os.environ.get("ADMIN_PASSWORD") or os.environ.get("ADMIN_PASS") or "").strip()
     if not email or not pwd:
         return
     user_cols = _table_columns("users")

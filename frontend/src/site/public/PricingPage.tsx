@@ -6,7 +6,7 @@ export function PricingPage() {
     <PublicLayout>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 18px 60px' }}>
         <div>
-          <div style={{ fontSize: 36, fontWeight: 800, letterSpacing: -0.8, color: '#0f172a' }}>Covixa 免费 Beta 规则</div>
+          <div style={{ fontSize: 36, fontWeight: 800, letterSpacing: -0.8, color: '#0f172a' }}>CodeSprite 免费 Beta 规则</div>
           <div style={{ marginTop: 10, fontSize: 16, lineHeight: 1.75, color: '#64748b' }}>
             当前阶段不公开收费、不开放在线充值。每个 Beta 用户会获得有限试用额度，模型调用从额度中扣减；达到个人或全站预算后会暂停新请求。
           </div>

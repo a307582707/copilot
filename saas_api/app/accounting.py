@@ -70,8 +70,12 @@ def get_user_balance_cents(conn, user_id: int) -> int:
 
 
 def beta_mode_enabled() -> bool:
-    # Covixa is being launched as a controlled free beta by default.
-    return _env_bool("COVIXA_BETA_MODE", True)
+    # Prefer CODESPRITE_BETA_MODE; keep COVIXA_BETA_MODE as a temporary alias.
+    if "CODESPRITE_BETA_MODE" in os.environ:
+        return _env_bool("CODESPRITE_BETA_MODE", True)
+    if "COVIXA_BETA_MODE" in os.environ:
+        return _env_bool("COVIXA_BETA_MODE", True)
+    return True
 
 
 def billing_enabled() -> bool:

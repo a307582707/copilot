@@ -74,7 +74,7 @@ export function DownloadPage() {
   return (
     <PublicLayout>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 18px 60px' }}>
-        <div style={{ fontSize: 34, fontWeight: 800, letterSpacing: -0.6, color: '#0f172a' }}>下载 Covixa AI 客户端</div>
+        <div style={{ fontSize: 34, fontWeight: 800, letterSpacing: -0.6, color: '#0f172a' }}>下载 CodeSprite AI 客户端</div>
         <div style={{ marginTop: 10, fontSize: 16, lineHeight: 1.75, color: '#64748b' }}>
           当前提供 Windows 客户端，后续补充 macOS 版本。登录同一账号即可在 Web 与客户端之间切换使用。
         </div>
@@ -110,7 +110,7 @@ export function DownloadPage() {
                     {recommended.installer?.sizeBytes ? ` · ${formatBytes(recommended.installer.sizeBytes)}` : ''}
                   </div>
                   <a className="dlPrimaryBtn" href={recommended.installer?.url || '#'} aria-disabled={!recommended.installer}>
-                    下载 Covixa AI Windows 安装版
+                    下载 CodeSprite AI Windows 安装版
                   </a>
 
                   {recommended.portable ? (
@@ -133,7 +133,7 @@ export function DownloadPage() {
 
               <div className="dlRight">
                 <div className="dlShot">
-                  <div style={{ opacity: 0.75, fontSize: 12, padding: 12 }}>（客户端界面截图占位：Covixa 深色 AI 工作台）</div>
+                  <div style={{ opacity: 0.75, fontSize: 12, padding: 12 }}>（客户端界面截图占位：CodeSprite 深色 AI 工作台）</div>
                 </div>
               </div>
             </div>

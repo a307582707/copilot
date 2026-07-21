@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="covixaTitle">
-  <title id="covixaTitle">Covixa</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="codespriteTitle">
+  <title id="codespriteTitle">CodeSprite</title>
   <defs>
-    <linearGradient id="covixaGlow" x1="10" y1="10" x2="54" y2="54" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#7c3aed" />
+    <linearGradient id="codespriteGlow" x1="10" y1="10" x2="54" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0ea5e9" />
       <stop offset="1" stop-color="#2563eb" />
     </linearGradient>
   </defs>
@@ -10,7 +10,7 @@
   <path
     d="M39.5 20.5a13.9 13.9 0 0 0-8.7-3.1c-7.8 0-13.9 6.4-13.9 14.6s6.1 14.6 13.9 14.6c3.2 0 6.2-1 8.7-3.1"
     fill="none"
-    stroke="url(#covixaGlow)"
+    stroke="url(#codespriteGlow)"
     stroke-linecap="round"
     stroke-width="5.2"
   />
