@@ -1,28 +1,30 @@
 param(
-  [string]$OutExe = 'E:\copilot\scripts\deploy-artifacts\CursorLikeSetup.exe',
+  [string]$OutExe = '',
   # Internal app id used for registry key / upgrade detection (ASCII recommended)
   [string]$AppId = 'CodeSprite',
   # Display name shown to users
   [string]$DisplayName = '码灵',
   [string]$Publisher = 'CodeSprite contributors',
   [string]$Version = '',
-  [string]$DownloadUrl = 'https://downloads.example.com/cursor-like.exe',
+  [string]$DownloadUrl = 'https://downloads.example.com/codesprite.exe',
   [switch]$ShowUi
 )
 
 $ErrorActionPreference = 'Stop'
 
-$defaultOutExe = 'E:\copilot\scripts\deploy-artifacts\CursorLikeSetup.exe'
-if ([string]::IsNullOrWhiteSpace($OutExe)) { $OutExe = $defaultOutExe }
+$repoRoot = Split-Path -Parent $PSScriptRoot
+$defaultArtifactDir = Join-Path $PSScriptRoot 'deploy-artifacts'
 
-$artifactDir = 'E:\copilot\scripts\deploy-artifacts'
+if ([string]::IsNullOrWhiteSpace($OutExe)) { $OutExe = Join-Path $defaultArtifactDir 'CodeSpriteSetup.exe' }
+
+$artifactDir = $defaultArtifactDir
 New-Item -ItemType Directory -Force -Path $artifactDir | Out-Null
-$csPath = Join-Path $artifactDir 'CursorLikeInstaller.cs'
+$csPath = Join-Path $artifactDir 'CodeSpriteInstaller.cs'
 
 $showUiStr = if ($ShowUi) { 'true' } else { 'false' }
 
 if ([string]::IsNullOrWhiteSpace($Version)) {
-  $confPath = 'E:\copilot\frontend\src-tauri\tauri.conf.json'
+  $confPath = Join-Path $repoRoot 'frontend\src-tauri\tauri.conf.json'
   if (Test-Path $confPath) {
     try { $Version = ((Get-Content -Raw $confPath) | ConvertFrom-Json).version } catch { }
   }
@@ -216,7 +218,7 @@ class Program
     if (createStartMenu) Directory.CreateDirectory(startMenuDir);
 
     string desktopDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-    string appExe = Path.Combine(installDir, "cursor-like.exe");
+    string appExe = Path.Combine(installDir, "codesprite.exe");
     string uninstallExe = Path.Combine(installDir, "Uninstall.exe");
 
     // download
@@ -566,7 +568,7 @@ public class WizardForm : Form, IProgressSink
       }
       if(_step==6){
         if(_chkRun.Checked){
-          try { System.Diagnostics.Process.Start(Path.Combine(_installDir,"cursor-like.exe")); } catch { }
+          try { System.Diagnostics.Process.Start(Path.Combine(_installDir,"codesprite.exe")); } catch { }
         }
         Close();
         return;
@@ -757,7 +759,7 @@ if(-not (Test-Path $csc)){ throw "csc.exe not found" }
 $refs = '/r:System.IO.Compression.dll /r:System.IO.Compression.FileSystem.dll /r:System.Windows.Forms.dll /r:System.Drawing.dll'
 $cscArgs = "/nologo /optimize /target:winexe /codepage:65001 /out:$OutExe $csPath $refs"
 
-$log = Join-Path $artifactDir 'CursorLikeInstaller.compile.log'
+$log = Join-Path $artifactDir 'CodeSpriteInstaller.compile.log'
 if (Test-Path $log) { Remove-Item -Force $log -ErrorAction SilentlyContinue }
 New-Item -ItemType File -Force -Path $log | Out-Null
 

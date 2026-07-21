@@ -1,3 +1,6 @@
+# LEGACY: superseded by scripts/build-desktop-installer-csharp-wizard.ps1
+# Do not use for releases. Kept for reference only.
+
 param(
   # 输入：Tauri 可执行文件（当前用 debug 版，后续可替换为 release 版）
   [string]$SourceExe,
@@ -11,6 +14,8 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+$repoRoot = Split-Path -Parent $PSScriptRoot
+$defaultArtifactDir = Join-Path $PSScriptRoot 'deploy-artifacts'
 
 function Write-Utf8NoBom([string]$Path, [string]$Content) {
   [System.IO.File]::WriteAllText($Path, $Content, (New-Object System.Text.UTF8Encoding($false)))
@@ -20,10 +25,10 @@ function Write-Ascii([string]$Path, [string]$Content) {
   [System.IO.File]::WriteAllText($Path, $Content, [System.Text.Encoding]::ASCII)
 }
 
-if (-not $SourceExe) { $SourceExe = 'E:\copilot\frontend\src-tauri\target\debug\cursor-like.exe' }
-if (-not $OutExe) { $OutExe = 'E:\copilot\scripts\deploy-artifacts\CursorLikeSetup.exe' }
-if (-not $AppName) { $AppName = 'CursorLike' }
-if (-not $AppExeName) { $AppExeName = 'cursor-like.exe' }
+if (-not $SourceExe) { $SourceExe = Join-Path $repoRoot 'frontend\src-tauri\target\debug\codesprite.exe' }
+if (-not $OutExe) { $OutExe = Join-Path $defaultArtifactDir 'CodeSpriteSetup_legacy.exe' }
+if (-not $AppName) { $AppName = 'CodeSprite' }
+if (-not $AppExeName) { $AppExeName = 'codesprite.exe' }
 
 if (-not (Test-Path $SourceExe)) {
   throw "SourceExe not found: $SourceExe"
@@ -34,7 +39,7 @@ if (-not (Test-Path $iexpress)) {
   throw "iexpress.exe not found: $iexpress"
 }
 
-$workRoot = Join-Path $env:TEMP ("cursorlike_iexpress_" + [Guid]::NewGuid().ToString("N"))
+$workRoot = Join-Path $env:TEMP ("codesprite_iexpress_" + [Guid]::NewGuid().ToString("N"))
 $packageDir = Join-Path $workRoot "package"
 $stagingDir = Join-Path $workRoot "staging"
 $null = New-Item -ItemType Directory -Force -Path $packageDir, $stagingDir

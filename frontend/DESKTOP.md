@@ -57,8 +57,18 @@
 
 产物位置（Tauri 默认）：
 
-- Windows：`frontend/src-tauri/target/release/bundle/`
+- Windows：`frontend/src-tauri/target/release/bundle/`（可执行文件名为 `codesprite.exe`）
 - macOS：`frontend/src-tauri/target/release/bundle/`
+
+应用标识：`com.codesprite.app`（`frontend/src-tauri/tauri.conf.json`）。
+
+Windows 安装包请使用仓库根目录脚本（唯一推荐）：
+
+```powershell
+pwsh ./scripts/build-desktop-installer-csharp-wizard.ps1
+```
+
+默认产物：`scripts/deploy-artifacts/CodeSpriteSetup.exe`。其余 `build-desktop-installer-*.ps1` 仅为遗留参考，勿用于发版。
 
 ---
 

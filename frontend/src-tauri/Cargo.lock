@@ -444,7 +444,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "cursor-like"
+name = "codesprite"
 version = "0.1.0"
 dependencies = [
  "serde",

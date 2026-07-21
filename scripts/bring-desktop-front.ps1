@@ -1,5 +1,5 @@
 param(
-  [string]$ProcessName = "cursor-like",
+  [string]$ProcessName = "codesprite",
   [switch]$Move = $false,
   [int]$X = 80,
   [int]$Y = 80,

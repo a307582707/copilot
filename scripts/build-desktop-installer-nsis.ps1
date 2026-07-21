@@ -1,12 +1,24 @@
+# LEGACY: superseded by scripts/build-desktop-installer-csharp-wizard.ps1
+# Do not use for releases. Kept for reference only.
+
 param(
-  [string]$SourceExe = 'E:\copilot\frontend\src-tauri\target\debug\cursor-like.exe',
-  [string]$AppName = 'CursorLike',
+  [string]$SourceExe = '',
+  [string]$AppName = 'CodeSprite',
   [string]$CompanyName = 'CodeSprite contributors',
   [string]$Version = '0.1.0',
-  [string]$OutExe = 'E:\copilot\scripts\deploy-artifacts\CursorLikeSetup_nsis.exe'
+  [string]$OutExe = ''
 )
 
 $ErrorActionPreference = 'Stop'
+$repoRoot = Split-Path -Parent $PSScriptRoot
+$defaultArtifactDir = Join-Path $PSScriptRoot 'deploy-artifacts'
+
+if ([string]::IsNullOrWhiteSpace($SourceExe)) {
+  $SourceExe = Join-Path $repoRoot 'frontend\src-tauri\target\debug\codesprite.exe'
+}
+if ([string]::IsNullOrWhiteSpace($OutExe)) {
+  $OutExe = Join-Path $defaultArtifactDir 'CodeSpriteSetup_legacy_nsis.exe'
+}
 
 function Invoke-Proc([string]$File,[string]$Args,[int]$TimeoutMs=55000){
   $psi=New-Object System.Diagnostics.ProcessStartInfo
@@ -28,97 +40,73 @@ if(-not (Test-Path $SourceExe)){
   throw "SourceExe not found: $SourceExe"
 }
 
-$toolsRoot = 'E:\copilot\tools\nsis'
+$toolsRoot = Join-Path $repoRoot 'tools\nsis'
 $null = New-Item -ItemType Directory -Force -Path $toolsRoot
 
 # Portable NSIS zip (no admin)
 $nsisVer = '3.10'
 $zipName = "nsis-$nsisVer.zip"
 $zipPath = Join-Path $toolsRoot $zipName
-# GitHub Release 直链（速度与稳定性更好，避免 SourceForge HTML/慢下载）
-$url = "https://github.com/kichik/nsis/releases/download/v$nsisVer/$zipName"
+$nsisDir = Join-Path $toolsRoot "nsis-$nsisVer"
+$makensis = Join-Path $nsisDir 'makensis.exe'
 
-if(-not (Test-Path $zipPath)){
-  # 避免 Windows curl.exe 在部分环境下参数解析异常，改用 Invoke-WebRequest（可控超时）
-  Invoke-WebRequest -UseBasicParsing -Uri $url -OutFile $zipPath -TimeoutSec 50
-  # 简单校验 zip 头（PK）
-  $head = [System.IO.File]::ReadAllBytes($zipPath)[0..1]
-  if(-not ($head[0] -eq 0x50 -and $head[1] -eq 0x4B)){
-    $preview = (Get-Content -Path $zipPath -TotalCount 5 -ErrorAction SilentlyContinue | Out-String)
-    throw "downloaded file is not a zip (missing PK header). url=$url preview=$preview"
-  }
-}
-
-$extractDir = Join-Path $toolsRoot "nsis-$nsisVer"
-if(-not (Test-Path (Join-Path $extractDir 'makensis.exe'))){
-  Expand-Archive -Path $zipPath -DestinationPath $extractDir -Force
-  # zip 里通常是 NSIS\makensis.exe
-  if(Test-Path (Join-Path $extractDir 'NSIS\makensis.exe')){
-    $extractDir = Join-Path $extractDir 'NSIS'
-  }
-}
-
-$makensis = Join-Path $extractDir 'makensis.exe'
 if(-not (Test-Path $makensis)){
-  throw "makensis.exe not found after extract. extractDir=$extractDir"
+  if(-not (Test-Path $zipPath)){
+    $url = "https://downloads.sourceforge.net/project/nsis/NSIS%203/$nsisVer/nsis-$nsisVer.zip"
+    Write-Host "Downloading portable NSIS $nsisVer ..."
+    Invoke-WebRequest -Uri $url -OutFile $zipPath
+  }
+  if(Test-Path $nsisDir){ Remove-Item -Recurse -Force $nsisDir }
+  Expand-Archive -Path $zipPath -DestinationPath $toolsRoot -Force
 }
 
-$artifactDir = 'E:\copilot\scripts\deploy-artifacts'
-$null = New-Item -ItemType Directory -Force -Path $artifactDir
+if(-not (Test-Path $makensis)){
+  throw "makensis.exe not found under $toolsRoot"
+}
 
-$nsi = Join-Path $artifactDir 'CursorLikeInstaller.nsi'
-$appExeName = 'cursor-like.exe'
-$installDir = '$LOCALAPPDATA\Programs\CursorLike'
+$null = New-Item -ItemType Directory -Force -Path $defaultArtifactDir
+$nsi = Join-Path $defaultArtifactDir 'CodeSpriteInstaller.nsi'
+$appExeName = 'codesprite.exe'
+$installDir = '$LOCALAPPDATA\Programs\CodeSprite'
 
-# NSIS script (Unicode)
-$nsiContent = @"
-Unicode true
-RequestExecutionLevel user
-
+@"
 !define APP_NAME "$AppName"
-!define COMPANY "$CompanyName"
+!define COMPANY_NAME "$CompanyName"
 !define APP_VERSION "$Version"
 !define APP_EXE "$appExeName"
-
-Name "\${APP_NAME} \${APP_VERSION}"
+Unicode true
+Name "${APP_NAME}"
 OutFile "$OutExe"
 InstallDir "$installDir"
-
-ShowInstDetails nevershow
-ShowUninstDetails nevershow
+RequestExecutionLevel user
+SilentInstall normal
 
 Page directory
 Page instfiles
-UninstPage instfiles
 
 Section "Install"
-  SetOutPath "\$INSTDIR"
-  File /oname=\${APP_EXE} "$SourceExe"
-
-  ; Start Menu
-  CreateDirectory "\$SMPROGRAMS\\\${APP_NAME}"
-  CreateShortCut "\$SMPROGRAMS\\\${APP_NAME}\\\${APP_NAME}.lnk" "\$INSTDIR\\\${APP_EXE}"
-  ; Desktop
-  CreateShortCut "\$DESKTOP\\\${APP_NAME}.lnk" "\$INSTDIR\\\${APP_EXE}"
-
-  ; Uninstaller
-  WriteUninstaller "\$INSTDIR\\Uninstall.exe"
-  CreateShortCut "\$SMPROGRAMS\\\${APP_NAME}\\Uninstall \${APP_NAME}.lnk" "\$INSTDIR\\Uninstall.exe"
+  SetOutPath "$INSTDIR"
+  File /oname=${APP_EXE} "$SourceExe"
+  WriteUninstaller "$INSTDIR\Uninstall.exe"
+  CreateShortCut "$SMPROGRAMS\${APP_NAME}.lnk" "$INSTDIR\${APP_EXE}"
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}" "DisplayName" "${APP_NAME}"
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}" "UninstallString" "$INSTDIR\Uninstall.exe"
 SectionEnd
 
 Section "Uninstall"
-  Delete "\$DESKTOP\\\${APP_NAME}.lnk"
-  RMDir /r "\$SMPROGRAMS\\\${APP_NAME}"
-  RMDir /r "\$INSTDIR"
+  Delete "$INSTDIR\${APP_EXE}"
+  Delete "$INSTDIR\Uninstall.exe"
+  Delete "$SMPROGRAMS\${APP_NAME}.lnk"
+  RMDir "$INSTDIR"
+  DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}"
 SectionEnd
-"@
+"@ | Set-Content -Path $nsi -Encoding UTF8
 
-[System.IO.File]::WriteAllText($nsi, $nsiContent, (New-Object System.Text.UTF8Encoding($false)))
-
-# Build installer
-$r2 = Invoke-Proc $makensis ("`"$nsi`"") 55000
-if($r2.ExitCode -ne 0){
-  throw "makensis failed exit=$($r2.ExitCode)`n$($r2.Stdout)`n$($r2.Stderr)"
+$r = Invoke-Proc $makensis ("/V2 `"$nsi`"")
+$r.Stdout | Write-Host
+$r.Stderr | Write-Host
+if(-not $r.Exited -or $r.ExitCode -ne 0){
+  throw "makensis failed: exit=$($r.ExitCode)"
 }
 
 if(-not (Test-Path $OutExe)){
@@ -126,4 +114,3 @@ if(-not (Test-Path $OutExe)){
 }
 
 Get-Item $OutExe | Select-Object FullName,Length,LastWriteTime | Format-List | Out-String
-

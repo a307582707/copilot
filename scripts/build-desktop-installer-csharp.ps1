@@ -1,18 +1,24 @@
+# LEGACY: superseded by scripts/build-desktop-installer-csharp-wizard.ps1
+# Do not use for releases. Kept for reference only.
+
 param(
-  [string]$OutExe = 'E:\copilot\scripts\deploy-artifacts\CursorLikeSetup_win_v3.exe',
-  [string]$AppName = 'CursorLike',
+  [string]$OutExe = '',
+  [string]$AppName = 'CodeSprite',
   [string]$Publisher = 'CodeSprite contributors',
   [string]$Version = '0.1.0',
-  [string]$DownloadZipUrl = 'https://downloads.example.com/cursor-like-windows-debug.zip',
+  [string]$DownloadZipUrl = 'https://downloads.example.com/codesprite-windows-debug.zip',
   [switch]$ShowUi = $true
 )
 
 $ErrorActionPreference = 'Stop'
+$repoRoot = Split-Path -Parent $PSScriptRoot
+$defaultArtifactDir = Join-Path $PSScriptRoot 'deploy-artifacts'
 
-$artifactDir = 'E:\copilot\scripts\deploy-artifacts'
+if ([string]::IsNullOrWhiteSpace($OutExe)) { $OutExe = Join-Path $defaultArtifactDir 'CodeSpriteSetup_legacy_win_v3.exe' }
+$artifactDir = $defaultArtifactDir
 New-Item -ItemType Directory -Force -Path $artifactDir | Out-Null
 
-$csPath = Join-Path $artifactDir 'CursorLikeInstaller.cs'
+$csPath = Join-Path $artifactDir 'CodeSpriteInstaller.cs'
 
 $showUiStr = if ($ShowUi) { "true" } else { "false" }
 
@@ -66,7 +72,7 @@ class Program
       );
 
       string desktopDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-      string appExe = Path.Combine(installDir, "cursor-like.exe");
+      string appExe = Path.Combine(installDir, "codesprite.exe");
       string uninstallExe = Path.Combine(installDir, "Uninstall.exe");
 
       bool isUninstall = args.Length > 0 && args[0].Equals("--uninstall", StringComparison.OrdinalIgnoreCase);
@@ -96,13 +102,13 @@ class Program
       if (ui != null) ui.SetPhase($zhDownloading, 0, 100, false);
       DownloadWithProgress(zipUrl, tmpZip, ui);
 
-      // Extract zip (contains cursor-like.exe)
+      // Extract zip (contains codesprite.exe)
       string tmpDir = Path.Combine(Path.GetTempPath(), "cursorlike_extract_" + Guid.NewGuid().ToString("N"));
       Directory.CreateDirectory(tmpDir);
       if (ui != null) ui.SetPhase($zhExtracting, 0, 100, true);
       ExtractZipWithProgress(tmpZip, tmpDir, ui);
 
-      // Find an exe inside zip and copy as cursor-like.exe
+      // Find an exe inside zip and copy as codesprite.exe
       string[] exes = Directory.GetFiles(tmpDir, "*.exe", SearchOption.AllDirectories);
       if (exes.Length == 0) throw new Exception("No .exe found in downloaded zip.");
       if (ui != null) ui.SetPhase($zhInstalling, 0, 100, true);
@@ -169,7 +175,7 @@ class Program
   {
     using (var wc = new WebClient())
     {
-      wc.Headers.Add("User-Agent", "CursorLikeSetup");
+      wc.Headers.Add("User-Agent", "CodeSpriteSetup");
       int last = 0;
       AutoResetEvent done = new AutoResetEvent(false);
       Exception err = null;
