@@ -15,13 +15,13 @@ export function ProductLanding() {
       {/* Hero */}
       <div className="lpProductHero">
         <div className="lpProductHeroLeft">
-          <div className="lpBadge">Covixa 免费 Beta：受控开放，多模型 AI 工作台</div>
+          <div className="lpBadge">CodeSprite 免费 Beta：受控开放，多模型 AI 工作台</div>
           <div className="lpProductTitle">
             一站式多模型 AI 能力平台
             <div className="lpProductSubtitle">（Web + Client 一体化）</div>
           </div>
           <div className="lpProductDesc">
-            从日常代码补全、上下文对话到团队知识复用，Covixa 先以受控免费 Beta 验证稳定性、成本和真实使用场景。
+            从日常代码补全、上下文对话到团队知识复用，CodeSprite 先以受控免费 Beta 验证稳定性、成本和真实使用场景。
           </div>
 
           <div className="lpProductCtas">
@@ -97,7 +97,7 @@ export function ProductLanding() {
       {/* Bottom CTA */}
       <div className="lpCtaBar">
         <div>
-          <div className="lpCtaTitle">准备好开始使用 Covixa 了吗？</div>
+          <div className="lpCtaTitle">准备好开始使用 CodeSprite 了吗？</div>
           <div className="lpCtaDesc">现在注册即可进入受控免费 Beta，额度用完后等待补发或下一轮开放。</div>
         </div>
         <Link to="/auth/register" className="lpBtn lpBtnPrimary">

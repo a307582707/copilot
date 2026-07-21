@@ -13,6 +13,9 @@ services:
       CRED_ENC_KEY: ${CRED_ENC_KEY:?set CRED_ENC_KEY in .env}
       ADMIN_USER: ${ADMIN_USER:-admin}
       ADMIN_PASS: ${ADMIN_PASS:?set ADMIN_PASS in .env}
+      # saas_api ensure_admin_from_env reads these (ADMIN_PASS is also accepted as alias).
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@localhost}
+      ADMIN_PASSWORD: ${ADMIN_PASS:?set ADMIN_PASS in .env}
       COOKIE_SECURE: ${COOKIE_SECURE:-1}
       DB_REQUIRE_MYSQL: "1"
       DB_DSN: mysql+pymysql://${MYSQL_USER:-codesprite}:${MYSQL_PASSWORD:?set MYSQL_PASSWORD in .env}@mysql:3306/${MYSQL_DATABASE:-codesprite}?charset=utf8mb4

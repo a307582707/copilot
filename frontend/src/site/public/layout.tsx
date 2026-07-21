@@ -25,13 +25,13 @@ function NavLink(props: { to: string; label: string }) {
   )
 }
 
-function CovixaBrandMark() {
+function CodeSpriteBrandMark() {
   return (
     <span className="pubBrandMark" aria-hidden="true">
       <svg viewBox="0 0 64 64" className="pubBrandMarkSvg">
         <defs>
-          <linearGradient id="covixaBrandGlow" x1="10" y1="10" x2="54" y2="54" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stopColor="#7c3aed" />
+          <linearGradient id="codespriteBrandGlow" x1="10" y1="10" x2="54" y2="54" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stopColor="#0ea5e9" />
             <stop offset="1" stopColor="#2563eb" />
           </linearGradient>
         </defs>
@@ -39,7 +39,7 @@ function CovixaBrandMark() {
         <path
           d="M39.5 20.5a13.9 13.9 0 0 0-8.7-3.1c-7.8 0-13.9 6.4-13.9 14.6s6.1 14.6 13.9 14.6c3.2 0 6.2-1 8.7-3.1"
           fill="none"
-          stroke="url(#covixaBrandGlow)"
+          stroke="url(#codespriteBrandGlow)"
           strokeLinecap="round"
           strokeWidth="5.2"
         />
@@ -218,9 +218,9 @@ export function PublicLayout(props: PropsWithChildren) {
       >
         {/* Brand */}
         <Link to="/" className="pubBrand" style={{ display: 'flex', gap: 9, alignItems: 'center', textDecoration: 'none' }}>
-          <CovixaBrandMark />
+          <CodeSpriteBrandMark />
           <div className="pubBrandText">
-            <div style={{ fontWeight: 700, fontSize: 15, color: '#0f172a', letterSpacing: -0.3 }}>Covixa</div>
+            <div style={{ fontWeight: 700, fontSize: 15, color: '#0f172a', letterSpacing: -0.3 }}>CodeSprite</div>
             <div className="pubBrandSub" style={{ fontSize: 11, color: '#94a3b8', lineHeight: 1 }}>
               多模型 AI 免费 Beta
             </div>
@@ -555,7 +555,7 @@ export function PublicLayout(props: PropsWithChildren) {
         }}
       >
         <div style={{ maxWidth: 1180, margin: '0 auto', display: 'flex', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-          <div style={{ color: '#94a3b8' }}>© {new Date().getFullYear()} Covixa contributors</div>
+          <div style={{ color: '#94a3b8' }}>© {new Date().getFullYear()} CodeSprite contributors</div>
           <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
             <a href="/docs" style={{ color: '#64748b', textDecoration: 'none' }}>
               使用手册

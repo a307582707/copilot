@@ -187,7 +187,7 @@ function loadApiBase(): string {
 
 // Use unicode escapes so the source file stays ASCII-only (avoids Windows encoding issues).
 const I18N = {
-  appSub: 'Covixa \u00b7 AI \u5de5\u4f5c\u53f0',
+  appSub: 'CodeSprite \u00b7 AI \u5de5\u4f5c\u53f0',
   newChat: '\u65b0\u5efa\u4f1a\u8bdd',
   newSession: '\u65b0\u4f1a\u8bdd',
   untitled: '\u672a\u547d\u540d',
@@ -218,7 +218,7 @@ const I18N = {
   hintFooter:
     '\u5df2\u63a5\u5165\u540e\u7aef /api/chat\uff08\u6d41\u5f0f\uff09\u3002\u4f1a\u8bdd\u81ea\u52a8\u4fdd\u5b58\u5230\u672c\u5730\uff08localStorage\uff09\u3002',
   intro:
-    '\u4f60\u597d\uff01\u8fd9\u662f Covixa \u7684 AI \u5de5\u4f5c\u53f0\uff08Web + Client\uff09\u3002\n\n- \u5de6\u4fa7\uff1a\u4f1a\u8bdd\u5217\u8868\n- \u53f3\u4fa7\uff1a\u5bf9\u8bdd + \u8f93\u5165\n- \u53f3\u4e0a\u89d2\uff1a\u540e\u7aef\u8fde\u901a\u72b6\u6001\uff08\u70b9\u51fb\u53ef\u8bbe\u7f6e\u540e\u7aef\u5730\u5740\uff09\n\n\u73b0\u5728\uff1a\u53ef\u4ee5\u5728\u8f93\u5165\u6846\u53f3\u4fa7\u9009\u62e9\u6a21\u578b\uff0c\u53d1\u9001\u65f6\u5c06 model \u4e00\u8d77\u4f20\u7ed9 /api/chat\u3002',
+    '\u4f60\u597d\uff01\u8fd9\u662f CodeSprite \u7684 AI \u5de5\u4f5c\u53f0\uff08Web + Client\uff09\u3002\n\n- \u5de6\u4fa7\uff1a\u4f1a\u8bdd\u5217\u8868\n- \u53f3\u4fa7\uff1a\u5bf9\u8bdd + \u8f93\u5165\n- \u53f3\u4e0a\u89d2\uff1a\u540e\u7aef\u8fde\u901a\u72b6\u6001\uff08\u70b9\u51fb\u53ef\u8bbe\u7f6e\u540e\u7aef\u5730\u5740\uff09\n\n\u73b0\u5728\uff1a\u53ef\u4ee5\u5728\u8f93\u5165\u6846\u53f3\u4fa7\u9009\u62e9\u6a21\u578b\uff0c\u53d1\u9001\u65f6\u5c06 model \u4e00\u8d77\u4f20\u7ed9 /api/chat\u3002',
   newChatHello: '\u65b0\u4f1a\u8bdd\u5df2\u521b\u5efa\u3002\u4f60\u53ef\u4ee5\u5f00\u59cb\u63d0\u95ee\u4e86\u3002',
   requestFailed: '\uff08\u8bf7\u6c42\u5931\u8d25\uff09',
   modelLabel: '\u6a21\u578b',
@@ -6335,7 +6335,7 @@ const [assetCreateTab, setAssetCreateTab] = useState<'host' | 'bigdata'>('host')
                 : DASHBOARD_ENABLED
                   ? '控制台'
                   : '资产管理'
-    document.title = `${page} · ${activeSpaceName} - Covixa`
+    document.title = `${page} · ${activeSpaceName} - CodeSprite`
   }, [mode, activeSpaceName])
 
   // Persist model selection
@@ -8509,7 +8509,7 @@ const [assetCreateTab, setAssetCreateTab] = useState<'host' | 'bigdata'>('host')
       {mode === 'workspace' ? (
         /* ── Workspace icon rail: collapses sidebar to 48px, flyout on demand ── */
         <aside className="sidebar sidebarIconRail" aria-label="Sidebar">
-          <div className="iconRailBrand" title="Covixa">CX</div>
+          <div className="iconRailBrand" title="CodeSprite">CS</div>
           {activeConn?.sessionId ? (
             <div className="iconRailConnDot" title={`已连接：${activeConn.hostId ? (hostById(activeConn.hostId)?.name || activeConn.hostId) : ''}`} />
           ) : (
@@ -8745,7 +8745,7 @@ const [assetCreateTab, setAssetCreateTab] = useState<'host' | 'bigdata'>('host')
       <aside className="sidebar" aria-label="Sidebar">
         <div className="sidebarHeader">
           <div className="brand">
-            <div className="brandTitle">{'Covixa'}</div>
+            <div className="brandTitle">{'CodeSprite'}</div>
             <div className="brandSub">{'AI \u5de5\u4f5c\u53f0'}</div>
             {/* Hide "当前空间" switcher: not relevant to end users in current product stage */}
           </div>
@@ -9059,7 +9059,7 @@ const [assetCreateTab, setAssetCreateTab] = useState<'host' | 'bigdata'>('host')
                 </div>
                 {dashHostCount === 0 ? (
                   <div className="dashGuide">
-                    <div className="dashGuideTitle">🚀 欢迎使用 Covixa，只需 3 步即可起飞</div>
+                    <div className="dashGuideTitle">🚀 欢迎使用 CodeSprite，只需 3 步即可起飞</div>
                     <div className="dashGuideStep dashGuideStepHot">
                       <div className="dashGuideStepTitle">
                         <span>1) 添加第一台主机</span>

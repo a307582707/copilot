@@ -70,7 +70,7 @@ export function AdminLayout(props: PropsWithChildren<{ minimalHeader?: boolean }
             }}
           />
           <div>
-            <div style={{ fontWeight: 800, letterSpacing: 0.4, color: 'rgba(255,255,255,0.92)' }}>Covixa Admin</div>
+            <div style={{ fontWeight: 800, letterSpacing: 0.4, color: 'rgba(255,255,255,0.92)' }}>CodeSprite Admin</div>
             <div style={{ fontSize: 12, opacity: 0.65 }}>后台管理</div>
           </div>
         </Link>

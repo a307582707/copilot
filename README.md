@@ -42,11 +42,14 @@ cd copilot/deploy/local
 cp .env.example .env
 ```
 
-编辑 `.env`，至少替换 `AUTH_SECRET`、`CRED_ENC_KEY`、`ADMIN_PASS`、`MYSQL_ROOT_PASSWORD` 和 `MYSQL_PASSWORD`。可使用以下命令生成随机值：
+编辑 `.env`，至少替换 `AUTH_SECRET`、`CRED_ENC_KEY`、`ADMIN_PASS`、`MYSQL_ROOT_PASSWORD` 和 `MYSQL_PASSWORD`。Compose 会把 `ADMIN_PASS` 注入为 API 可用的 `ADMIN_PASSWORD`，默认管理员邮箱为 `admin@localhost`（可用 `ADMIN_EMAIL` 覆盖）。
+
+生成随机值：
 
 ```bash
 openssl rand -hex 32
 openssl rand -base64 32 | tr '+/' '-_'
+python3 -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
 ```
 
 然后启动：

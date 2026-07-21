@@ -70,9 +70,9 @@ def main() -> int:
     admin_email = (os.environ.get("ADMIN_EMAIL") or "").strip()
     admin_pwd = (os.environ.get("ADMIN_PASSWORD") or "").strip()
     if admin_email and admin_pwd:
-        print("ADMIN_EMAIL/ADMIN_PASSWORD: set (ensure_admin_from_env will upsert admin on API startup)")
+        print("ADMIN_EMAIL/ADMIN_PASSWORD (or ADMIN_USER/ADMIN_PASS): set (ensure_admin_from_env will upsert admin on API startup)")
     else:
-        print("ADMIN_EMAIL/ADMIN_PASSWORD: not both set (admin row must exist in DB or set both env vars)")
+        print("ADMIN_EMAIL/ADMIN_PASSWORD (or ADMIN_USER/ADMIN_PASS): not both set (admin row must exist in DB or set env vars)")
 
     print("RESULT: OK — schema compatible with _login()")
     return 0

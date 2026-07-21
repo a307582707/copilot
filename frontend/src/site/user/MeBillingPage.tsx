@@ -231,7 +231,7 @@ export function MeBillingPage() {
         <div className="billingPageHeader">
           <div>
             <h1 className="billingTitle">Beta 额度中心</h1>
-            <p className="billingSubtitle">Covixa 当前为受控免费试运营；额度用于模型调用和资源消耗控制，不代表现金余额。</p>
+            <p className="billingSubtitle">CodeSprite 当前为受控免费试运营；额度用于模型调用和资源消耗控制，不代表现金余额。</p>
           </div>
           <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
             <div style={{ fontSize: 12, color: 'var(--text-dim)' }}>{meEmail ? `当前用户: ${meEmail}` : ''}</div>

@@ -87,7 +87,7 @@ export function HomePage() {
       <LoginRequiredModal
         open={needLogin}
         title="需要登录"
-        message="欢迎使用 Covixa。\n请先登录后再进入网页版 AI 工作区。"
+        message="欢迎使用 CodeSprite。\n请先登录后再进入网页版 AI 工作区。"
         confirmText="立即登录"
         cancelText="取消"
         onCancel={() => setNeedLogin(false)}
@@ -104,7 +104,7 @@ export function HomePage() {
                   {planLabel(plan)}
                 </span>
               </div>
-              <div style={{ marginTop: 8, fontSize: 14, color: '#64748b' }}>准备开始使用 Covixa 了吗？</div>
+              <div style={{ marginTop: 8, fontSize: 14, color: '#64748b' }}>准备开始使用 CodeSprite 了吗？</div>
 
               <div className="lpPortalActions" style={{ marginTop: 16 }}>
                 <button type="button" className="lpBtn lpBtnPrimary" onClick={() => nav('/app')}>
@@ -146,7 +146,7 @@ export function HomePage() {
           <section className="lpAiHero">
             <div className="lpAiHeroGlow" />
             <div className="lpAiHeroInner">
-              <div className="lpBadge">Covixa 免费 Beta：名额有限，额度可控</div>
+              <div className="lpBadge">CodeSprite 免费 Beta：名额有限，额度可控</div>
               <h1 className="lpAiHeroTitle">一站式多模型 AI 能力平台</h1>
               <div className="lpAiHeroDesc">
                 支持 GPT、Claude、Gemini、DeepSeek 等主流模型能力。当前处于受控免费 Beta，按账号发放有限额度，先验证稳定性和真实成本。

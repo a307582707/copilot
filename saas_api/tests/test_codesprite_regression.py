@@ -9,8 +9,8 @@ from unittest.mock import patch
 
 
 _tmp = tempfile.TemporaryDirectory()
-os.environ["DB_PATH"] = os.path.join(_tmp.name, "covixa-test.db")
-os.environ["AUTH_SECRET"] = "test-secret-for-covixa-regression"
+os.environ["DB_PATH"] = os.path.join(_tmp.name, "codesprite-test.db")
+os.environ["AUTH_SECRET"] = "test-secret-for-codesprite-regression"
 os.environ["BILLING_ENABLED"] = "1"
 os.environ["BETA_INITIAL_CREDIT_CENTS"] = "0"
 os.environ["BILLING_MIN_BALANCE_CENTS"] = "1"
@@ -118,7 +118,7 @@ async def _fake_stream_chat(*args, **kwargs):
     yield b"ok"
 
 
-class CovixaRegressionTests(unittest.IsolatedAsyncioTestCase):
+class CodeSpriteRegressionTests(unittest.IsolatedAsyncioTestCase):
     async def asyncSetUp(self) -> None:
         self.client = MiniAsgiClient(app)
 
