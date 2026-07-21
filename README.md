@@ -107,6 +107,7 @@ uvicorn app.main:app --host 127.0.0.1 --port 8030
 - `start-frontend.cmd` / `start-backend.cmd`：分别启动前端与轻量后端
 - `start-web.cmd`：单进程 Web 模式（API 同时托管前端构建产物）
 - `start-desktop.cmd`：启动 Tauri 桌面端
+- `build-desktop-installer-csharp-wizard.ps1`：Windows 安装包（推荐）
 
 桌面客户端说明见 [frontend/DESKTOP.md](frontend/DESKTOP.md)。
 

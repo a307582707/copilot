@@ -133,20 +133,38 @@ type HealthState =
   | { state: 'ok' }
   | { state: 'error'; detail?: string }
 
-const STORAGE_KEY = 'cursor_like_chat_state_v1'
-const MODEL_KEY = 'cursor_like_selected_model_v1'
-const SIDEBAR_W_KEY = 'cursor_like_sidebar_w_v1'
+
+function migrateCursorLikeStorageKeys() {
+  try {
+    const keys = Object.keys(localStorage)
+    for (const k of keys) {
+      if (!k.startsWith('cursor_like_')) continue
+      const next = 'codesprite_' + k.slice('cursor_like_'.length)
+      if (localStorage.getItem(next) == null) {
+        const v = localStorage.getItem(k)
+        if (v != null) localStorage.setItem(next, v)
+      }
+    }
+  } catch {
+    // ignore
+  }
+}
+migrateCursorLikeStorageKeys()
+
+const STORAGE_KEY = 'codesprite_chat_state_v1'
+const MODEL_KEY = 'codesprite_selected_model_v1'
+const SIDEBAR_W_KEY = 'codesprite_sidebar_w_v1'
 const SIDEBAR_COLLAPSED_KEY = 'cursor_sidebar_collapsed_v2'
-const MODE_KEY = 'cursor_like_sidebar_mode_v1'
-const API_BASE_KEY = 'cursor_like_api_base_v1'
-const DASH_FULLSCREEN_KEY = 'cursor_like_dashboard_fullscreen_v1'
-const ACTIVE_CONN_KEY = 'cursor_like_active_conn_v1'
-const WORKSPACE_SPLIT_W_KEY = 'cursor_like_workspace_split_w_v1'
-const WORKSPACE_TOOLS_OPEN_KEY = 'cursor_like_workspace_tools_open_v1'
-const DASH_GUIDE_DISMISS_DAY_KEY = 'cursor_like_dashboard_halfempty_dismiss_day_v1'
+const MODE_KEY = 'codesprite_sidebar_mode_v1'
+const API_BASE_KEY = 'codesprite_api_base_v1'
+const DASH_FULLSCREEN_KEY = 'codesprite_dashboard_fullscreen_v1'
+const ACTIVE_CONN_KEY = 'codesprite_active_conn_v1'
+const WORKSPACE_SPLIT_W_KEY = 'codesprite_workspace_split_w_v1'
+const WORKSPACE_TOOLS_OPEN_KEY = 'codesprite_workspace_tools_open_v1'
+const DASH_GUIDE_DISMISS_DAY_KEY = 'codesprite_dashboard_halfempty_dismiss_day_v1'
 // Spec §8: Context switcher (spaces) - users can switch "space/config" sets.
-const SPACE_LIST_KEY = 'cursor_like_spaces_v1'
-const SPACE_ACTIVE_KEY = 'cursor_like_active_space_v1'
+const SPACE_LIST_KEY = 'codesprite_spaces_v1'
+const SPACE_ACTIVE_KEY = 'codesprite_active_space_v1'
 type Space = { id: string; name: string; lastUsedAt: number }
 // Backend sync switch for host inventory (rollback lever).
 const INVENTORY_SYNC_ENABLED_KEY = 'codesprite_inventory_sync_enabled_v1'
@@ -518,7 +536,7 @@ export default function App() {
       try {
         for (let i = localStorage.length - 1; i >= 0; i--) {
           const k = localStorage.key(i) || ''
-          if (k.startsWith('cursor_like_') || k.startsWith('codesprite_')) localStorage.removeItem(k)
+          if (k.startsWith('codesprite_') || k.startsWith('codesprite_')) localStorage.removeItem(k)
         }
       } catch {
         // ignore
@@ -1711,8 +1729,8 @@ export default function App() {
   const [sysProbeBusy, setSysProbeBusy] = useState(false)
   const [cmdRunBusyForMsg, setCmdRunBusyForMsg] = useState<string>('')
   type CmdAutoRunMode = 'unset' | 'ask' | 'allowlist' | 'all'
-  const CMD_AUTORUN_KEY = 'cursor_like_cmd_autorun_v1'
-  const CMD_ALLOWLIST_KEY = 'cursor_like_cmd_allowlist_v1'
+  const CMD_AUTORUN_KEY = 'codesprite_cmd_autorun_v1'
+  const CMD_ALLOWLIST_KEY = 'codesprite_cmd_allowlist_v1'
   const [cmdAutoRunMode, setCmdAutoRunMode] = useState<CmdAutoRunMode>(() => {
     try {
       const v = String(localStorage.getItem(CMD_AUTORUN_KEY) || '').trim()
@@ -1738,8 +1756,8 @@ export default function App() {
   })
   // Cursor-like: AI tool-call execution policy (Ask / Allowlist / Run Everything)
   type ToolAutoRunMode = 'unset' | 'ask' | 'allowlist' | 'all'
-  const TOOL_AUTORUN_KEY = 'cursor_like_tool_autorun_v1'
-  const TOOL_ALLOWLIST_KEY = 'cursor_like_tool_allowlist_v1'
+  const TOOL_AUTORUN_KEY = 'codesprite_tool_autorun_v1'
+  const TOOL_ALLOWLIST_KEY = 'codesprite_tool_allowlist_v1'
   const [toolAutoRunMode, setToolAutoRunMode] = useState<ToolAutoRunMode>(() => {
     try {
       const v = String(localStorage.getItem(TOOL_AUTORUN_KEY) || '').trim()
@@ -2139,10 +2157,10 @@ export default function App() {
   const [mentionActiveIdx, setMentionActiveIdx] = useState(0)
 
   // P0: vertical splitter between messages and composer (workspace/chat)
-  const CHAT_BOTTOM_H_KEY = 'cursor_like_chat_bottom_h_v1'
-  const WS_CHAT_BOTTOM_H_KEY = 'cursor_like_workspace_chat_bottom_h_v1'
-  const WS_TERM_H_KEY = 'cursor_like_workspace_term_h_v1'
-  const WS_TERM_OPEN_KEY = 'cursor_like_workspace_term_open_v1'
+  const CHAT_BOTTOM_H_KEY = 'codesprite_chat_bottom_h_v1'
+  const WS_CHAT_BOTTOM_H_KEY = 'codesprite_workspace_chat_bottom_h_v1'
+  const WS_TERM_H_KEY = 'codesprite_workspace_term_h_v1'
+  const WS_TERM_OPEN_KEY = 'codesprite_workspace_term_open_v1'
   const [chatBottomH, setChatBottomH] = useState<number>(() => {
     try {
       const raw = localStorage.getItem(CHAT_BOTTOM_H_KEY)

@@ -42,7 +42,7 @@ Write-Host ("Copying dist -> " + $target)
 Copy-Item -Recurse -Force $dist $target
 
 if ($Zip) {
-  $zipPath = Join-Path $OutDir 'cursor-like-web.zip'
+  $zipPath = Join-Path $OutDir 'codesprite-web.zip'
   if (Test-Path $zipPath) { Remove-Item -Force $zipPath }
   Write-Host ("Creating zip: " + $zipPath)
   Compress-Archive -Path (Join-Path $target '*') -DestinationPath $zipPath -Force
@@ -51,7 +51,7 @@ if ($Zip) {
 Write-Host ""
 Write-Host "OK"
 Write-Host ("Web dist dir: " + $target)
-if ($Zip) { Write-Host ("Web zip:     " + (Join-Path $OutDir 'cursor-like-web.zip')) }
+if ($Zip) { Write-Host ("Web zip:     " + (Join-Path $OutDir 'codesprite-web.zip')) }
 
 
 
