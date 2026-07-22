@@ -129,17 +129,6 @@
     box-shadow: var(--ds-shadow-1);
 }
 
-.ui-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 3px 8px;
-    border-radius: 999px;
-    border: 1px solid var(--ds-border);
-    background: var(--ds-surface-2);
-    color: var(--ds-text-muted-2);
-    font-size: var(--ds-font-11);
-}
 
 .ui-menu {
     min-width: 168px;

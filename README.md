@@ -143,7 +143,10 @@ export OLLAMA_MODEL=qwen2.5-coder:1.5b
 | [docs/api-backend.md](docs/api-backend.md) | 轻量后端接口说明 |
 | [docs/user-guide.md](docs/user-guide.md) | 面向使用者的操作说明 |
 | [frontend/DESKTOP.md](frontend/DESKTOP.md) | Tauri 桌面客户端 |
+| [docs/wiki/](docs/wiki/) | Wiki 同步稿：项目介绍、语言环境、开发指南 |
 | [docs/](docs/) | 产品需求、UI 规范、AIOps、计费设计 |
+| [docs/ui/archive/](docs/ui/archive/) | 阶段性 UI / 计费原型归档 |
+| [scripts/legacy/](scripts/legacy/) | 遗留安装与文档辅助脚本 |
 
 ## 安全说明
 

@@ -6,7 +6,7 @@
 
 - 交互总规格：`docs/product/console-dashboard-interaction-spec.md`
 - 资产/主机设计：`docs/host-config-design.md`、`docs/ui-host-config-ui-spec.md`
-- 设计系统：`docs/ui-design-system.md`（token 与 `frontend/src/ui/*`）
+- 设计系统：`docs/ui/archive/ui-design-system.md`（草稿）与 `frontend/src/ui/*`（现行实现）
 - 现有实现骨架：`frontend/src/App.tsx`、`frontend/src/App.css`、`frontend/src/host-config/HostSidebar.tsx`
 
 ## 1. /app 信息架构（mode 映射）

@@ -8,11 +8,11 @@
 - **后台（/admin）**：统计/用户/订单/流水
 - **桌面端（Tauri + Installer）**：安装器向导 + 客户端关键设置（API Base）
 
-设计语言以“Cursor-like 暗色磨砂 + 高密度工具型 UI”为基线，复用现有设计系统与组件库。
+设计语言以“暗色磨砂 + 高密度工具型 UI”为基线，复用现有设计系统与组件库。
 
 ## 1. 现有基线（必须对齐）
 
-- **设计系统**：`docs/ui-design-system.md` 已定义 token 与基础组件（`frontend/src/ui/*`）及迁移策略（只新增 `ui-` 前缀样式/组件，避免破坏旧样式）。
+- **设计系统**：早期草稿见 `docs/ui/archive/ui-design-system.md`；现行 token 与基础组件以 `frontend/src/ui/*` 与本文为准（只新增 `ui-` 前缀样式/组件，避免破坏旧样式）。
 - **token 来源**：`frontend/src/ui/tokens.css`（并对旧变量 `--bg/--panel/--border/...` 做了 alias）。
 - **控制台/资产管理交互规格**：`docs/product/console-dashboard-interaction-spec.md`（已对齐 `mode=dashboard/chat/ssh/plugins`）。
 - **工作区优先的产品设计**：`docs/product/asset-workspace-mvp-spec.md`（定义“像 Cursor 一样”的工作区闭环与门禁/审计理念）。

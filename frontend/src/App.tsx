@@ -10,7 +10,6 @@ import type { Asset, ClientStateV2 as HostConfigStateV1, Credential, Group, Host
 type Host = Asset
 import { HostSidebar } from './host-config/HostSidebar'
 import { HOST_CONFIG_KEY, fixHostConfigState, loadHostConfigState, saveHostConfigState } from './host-config/storage'
-import { Badge } from './ui/Badge'
 import { Button } from './ui/Button'
 import { IconButton } from './ui/IconButton'
 import { Input } from './ui/Input'

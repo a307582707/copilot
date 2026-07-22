@@ -33,7 +33,7 @@ export function Modal(
     }
     document.addEventListener('keydown', onKeyDown)
 
-    // Lock scroll (Cursor-like): prevent background page from moving.
+    // Lock scroll: prevent background page from moving.
     try {
       prevOverflowRef.current = document.body.style.overflow || ''
       document.body.style.overflow = 'hidden'

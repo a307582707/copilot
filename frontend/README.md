@@ -8,6 +8,7 @@ React 19 + TypeScript + Vite 前端，覆盖公开站点、账号体系、产品
 - `src/site/auth/`：登录 / 注册与产品门禁
 - `src/site/user/`：用户中心（订阅、账单等）
 - `src/site/admin/`：管理后台
+- `src/site/ops/`：云资产 / AIOps 工作台组件
 - `src/App.tsx`：产品工作台（对话、终端等）
 - `src/ui/`：共享 UI 组件
 - `src-tauri/`：Tauri 桌面壳

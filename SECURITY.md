@@ -1,5 +1,14 @@
 # Security Policy
 
+## Supported versions
+
+| Version | Supported |
+|---------|-----------|
+| `main` (latest snapshot) | Yes |
+| Older tags / forks | Best-effort only |
+
+This repository is an open snapshot. Security fixes land on `main` first.
+
 ## Reporting a vulnerability
 
 Please report vulnerabilities privately to the repository maintainers through
