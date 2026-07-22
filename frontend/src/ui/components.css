@@ -192,7 +192,7 @@
     color: rgba(255, 120, 120, 0.95);
 }
 
-/* ===== P0: Modal / Drawer / ListRow / StatusPill (v1) ===== */
+/* ===== P0: Modal / Drawer / StatusPill (v1) ===== */
 
 .ui-modalOverlay {
     position: fixed;

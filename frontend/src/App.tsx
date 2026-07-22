@@ -145,6 +145,13 @@ function migrateCursorLikeStorageKeys() {
         if (v != null) localStorage.setItem(next, v)
       }
     }
+    // One-off: older sidebar key used a non-prefixed name.
+    const oldSidebar = 'cursor_sidebar_collapsed_v2'
+    const newSidebar = 'codesprite_sidebar_collapsed_v2'
+    if (localStorage.getItem(newSidebar) == null) {
+      const v = localStorage.getItem(oldSidebar)
+      if (v != null) localStorage.setItem(newSidebar, v)
+    }
   } catch {
     // ignore
   }
@@ -154,7 +161,7 @@ migrateCursorLikeStorageKeys()
 const STORAGE_KEY = 'codesprite_chat_state_v1'
 const MODEL_KEY = 'codesprite_selected_model_v1'
 const SIDEBAR_W_KEY = 'codesprite_sidebar_w_v1'
-const SIDEBAR_COLLAPSED_KEY = 'cursor_sidebar_collapsed_v2'
+const SIDEBAR_COLLAPSED_KEY = 'codesprite_sidebar_collapsed_v2'
 const MODE_KEY = 'codesprite_sidebar_mode_v1'
 const API_BASE_KEY = 'codesprite_api_base_v1'
 const DASH_FULLSCREEN_KEY = 'codesprite_dashboard_fullscreen_v1'

@@ -174,9 +174,10 @@ curl http://127.0.0.1:8030/models
 #### 示例（curl）
 
 ```bash
-curl -N http://127.0.0.1:8030/chat ^
-  -H \"Content-Type: application/json\" ^
-  -d \"{\\\"session_id\\\":\\\"s_123\\\",\\\"message\\\":\\\"Hello\\\",\\\"model\\\":\\\"qwen2.5-coder:1.5b\\\"}\"\n+```
+curl -N http://127.0.0.1:8030/chat \
+  -H "Content-Type: application/json" \
+  -d '{"session_id":"s_123","message":"Hello","model":"qwen2.5-coder:1.5b"}'
+```
 
 ---
 

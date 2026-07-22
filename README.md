@@ -25,7 +25,7 @@ CodeSprite（码灵）是面向开发与运维场景的 AI 工作台。核心能
 | `backend/` | 轻量本地聊天与管理 API，适合最小化开发场景 |
 | `cicd/scripts/` | 阿里云资产发现与资产域初始化脚本 |
 | `deploy/` | Dockerfile、Compose（`local/` / `prod/`）与 Nginx 示例 |
-| `scripts/` | 本地开发、Windows 桌面构建及运维辅助脚本 |
+| `scripts/` | 本地开发、Windows 桌面构建及运维辅助脚本（可选旧工具见 `scripts/legacy/`） |
 | `docs/` | 产品、UI、AIOps、计费与设计文档（阶段性 UI 报告见 `docs/ui/archive/`） |
 
 ## 快速启动（Docker）
@@ -117,7 +117,7 @@ uvicorn app.main:app --host 127.0.0.1 --port 8030
 
 ```bash
 export OLLAMA_BASE_URL=http://127.0.0.1:11434
-export OLLAMA_MODEL=qwen2.5-coder:7b
+export OLLAMA_MODEL=qwen2.5-coder:1.5b
 ```
 
 也可通过 `LLM_BASE_URL`、`LLM_API_KEY`、`LLM_MODEL`，或 `LLM_UPSTREAMS_JSON` 配置 OpenAI-compatible 服务。不要把真实 API Key 写入仓库。

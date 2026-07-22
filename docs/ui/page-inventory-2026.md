@@ -17,11 +17,14 @@
 | Auth | `/auth/register` | 顶部“注册”/CTA | 无 | `RegisterPage` |
 | BackCompat | `/login` | 旧入口 | 无 | 重定向 `/auth/login` |
 | BackCompat | `/register` | 旧入口 | 无 | 重定向 `/auth/register` |
-| App | `/app` | 登录后入口（Header UserMenu / Home CTA） | **必须登录**（`ProductGate`） | `App.tsx`（控制台/聊天/资产管理/插件） |
-| Me | `/me/*` | Header UserMenu: 账号设置 | **当前未强制门禁（建议补齐）** | `MeHome`（内部子路由） |
+| App | `/app/*` | 登录后入口（Header UserMenu / Home CTA） | **必须登录**（`ProductGate`） | `App.tsx`（控制台/聊天/资产管理/插件） |
+| App | `/chat/*` | 聊天别名入口 | **必须登录**（`ProductGate`） | `App.tsx` |
+| Me | `/me/*` | Header UserMenu: 账号设置 | **必须登录**（`ProductGate`） | `MeHome`（内部子路由） |
 | Admin | `/admin/login` | 直接访问/重定向 | 无 | `AdminLoginPage` |
+| Admin | `/admin/aiops/*` | 直接访问 | 无（占位） | `NotFound`（功能暂未开放） |
+| Admin | `/admin/overseas` | 后台导航 | **必须登录且 role=admin**（`AdminGate`） | `AdminOverseasPage` |
 | Admin | `/admin/*` | admin login 成功后 | **必须登录且 role=admin**（`AdminGate`） | `AdminHome`（内部子路由） |
-| 兜底 | `*` | 任意未知路由 | 无 | 重定向 `/` |
+| 兜底 | `*` | 任意未知路由 | 无 | `NotFound` |
 
 ## 2. Public Site（官网）页面清单
 

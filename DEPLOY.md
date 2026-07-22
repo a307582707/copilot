@@ -30,7 +30,7 @@ git --version
 ## 2. 本地一体化部署
 
 ```bash
-cd /path/to/copilot/deploy/local
+cd /path/to/codesprite/deploy/local
 cp .env.example .env
 chmod 600 .env
 ```
@@ -62,7 +62,7 @@ docker compose down
 ### 3.1 准备配置
 
 ```bash
-cd /path/to/copilot/deploy/prod
+cd /path/to/codesprite/deploy/prod
 cp .env.example .env
 chmod 600 .env
 ```
@@ -142,7 +142,7 @@ curl -fsS http://127.0.0.1:18030/api/model/health
 每次升级前同时备份 MySQL、应用数据和 `.env`。
 
 ```bash
-cd /path/to/copilot/deploy/prod
+cd /path/to/codesprite/deploy/prod
 ts="$(date +%Y%m%d%H%M%S)"
 set -a
 source ./.env
@@ -172,7 +172,7 @@ test -s "./backups/app-data-${ts}.tar.gz"
 升级前记录当前版本并完成第 5 节备份：
 
 ```bash
-cd /path/to/copilot
+cd /path/to/codesprite
 git rev-parse HEAD
 docker inspect codesprite-app --format '{{.Image}}'
 ```
@@ -195,7 +195,7 @@ curl -fsS http://127.0.0.1:18030/api/health
 代码或镜像回滚：
 
 ```bash
-cd /path/to/copilot
+cd /path/to/codesprite
 git checkout <previous-tested-tag-or-commit>
 cd deploy/prod
 docker compose up -d --build app

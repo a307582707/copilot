@@ -228,7 +228,7 @@ class Program
 
     if (isExe)
     {
-      string tmpExe = Path.Combine(Path.GetTempPath(), "cursorlike_" + Guid.NewGuid().ToString("N") + ".exe");
+      string tmpExe = Path.Combine(Path.GetTempPath(), "codesprite_" + Guid.NewGuid().ToString("N") + ".exe");
       if (ui != null) ui.SetPhase(ZH_DOWNLOADING, 0, 100, false);
       DownloadWithProgress(downloadUrl, tmpExe, ui);
       if (ui != null) ui.SetPhase(ZH_INSTALLING, 0, 100, true);
@@ -245,12 +245,12 @@ class Program
     }
     else
     {
-      string tmpZip = Path.Combine(Path.GetTempPath(), "cursorlike_" + Guid.NewGuid().ToString("N") + ".zip");
+      string tmpZip = Path.Combine(Path.GetTempPath(), "codesprite_" + Guid.NewGuid().ToString("N") + ".zip");
       if (ui != null) ui.SetPhase(ZH_DOWNLOADING, 0, 100, false);
       DownloadWithProgress(downloadUrl, tmpZip, ui);
 
       // extract
-      string tmpDir = Path.Combine(Path.GetTempPath(), "cursorlike_extract_" + Guid.NewGuid().ToString("N"));
+      string tmpDir = Path.Combine(Path.GetTempPath(), "codesprite_extract_" + Guid.NewGuid().ToString("N"));
       Directory.CreateDirectory(tmpDir);
       if (ui != null) ui.SetPhase(ZH_EXTRACTING, 0, 100, true);
       ExtractZipWithProgress(tmpZip, tmpDir, ui);

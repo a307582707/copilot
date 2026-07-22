@@ -13,12 +13,18 @@ backend/.venv/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+*.egg-info/
+.coverage
+htmlcov/
+coverage/
 
 # Node / Vite
 frontend/node_modules/
 frontend/dist/
 frontend/.vite/
 frontend/.cache/
+frontend/.eslintcache
+.eslintcache
 frontend/src-tauri/target/
 frontend/src-tauri/icons/
 

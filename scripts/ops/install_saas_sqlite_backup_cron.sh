@@ -7,7 +7,7 @@ set -euo pipefail
 #
 # Env:
 #   CRON_SCHEDULE="17 3 * * *"   # default: daily 03:17
-#   SCRIPT_PATH=/path/to/copilot/scripts/ops/backup_saas_sqlite.sh
+#   SCRIPT_PATH=/path/to/codesprite/scripts/ops/backup_saas_sqlite.sh
 #   USER=root
 #
 # Optional pass-through to backup script:

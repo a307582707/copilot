@@ -12,9 +12,17 @@
 **/*.log
 **/*.db
 **/*.sqlite*
+**/.eslintcache
+**/coverage
+**/htmlcov
+**/*.egg-info
 data
 tmp
 backups
 online_mirror
 tools
 docs
+cicd/out
+scripts/deploy-artifacts
+scripts/build-logs
+frontend/src-tauri

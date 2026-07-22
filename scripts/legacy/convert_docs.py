@@ -4,8 +4,8 @@
 Convert project markdown artifacts to DOCX and Mermaid diagrams to PNG.
 
 Usage examples:
-  python3 scripts/convert_docs.py md-to-docx "in.md" "out.docx"
-  python3 scripts/convert_docs.py mermaid-md-to-png "diagram.md" "diagram.png"
+  python3 scripts/legacy/convert_docs.py md-to-docx "in.md" "out.docx"
+  python3 scripts/legacy/convert_docs.py mermaid-md-to-png "diagram.md" "diagram.png"
 """
 
 import argparse

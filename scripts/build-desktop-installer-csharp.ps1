@@ -98,12 +98,12 @@ class Program
       }
 
       // Download zip to temp
-      string tmpZip = Path.Combine(Path.GetTempPath(), "cursorlike_" + Guid.NewGuid().ToString("N") + ".zip");
+      string tmpZip = Path.Combine(Path.GetTempPath(), "codesprite_" + Guid.NewGuid().ToString("N") + ".zip");
       if (ui != null) ui.SetPhase($zhDownloading, 0, 100, false);
       DownloadWithProgress(zipUrl, tmpZip, ui);
 
       // Extract zip (contains codesprite.exe)
-      string tmpDir = Path.Combine(Path.GetTempPath(), "cursorlike_extract_" + Guid.NewGuid().ToString("N"));
+      string tmpDir = Path.Combine(Path.GetTempPath(), "codesprite_extract_" + Guid.NewGuid().ToString("N"));
       Directory.CreateDirectory(tmpDir);
       if (ui != null) ui.SetPhase($zhExtracting, 0, 100, true);
       ExtractZipWithProgress(tmpZip, tmpDir, ui);

@@ -557,7 +557,7 @@ Content-Type: application/json
 
 {
   "username": "zhangsan",
-  "password": "123456"
+  "password": "your-password"
 }
 
 Response:
@@ -580,7 +580,7 @@ Content-Type: application/json
 
 {
   "username": "zhangsan",
-  "password": "123456"
+  "password": "your-password"
 }
 
 Response:
