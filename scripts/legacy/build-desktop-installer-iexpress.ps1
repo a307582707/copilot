@@ -14,8 +14,8 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$repoRoot = Split-Path -Parent $PSScriptRoot
-$defaultArtifactDir = Join-Path $PSScriptRoot 'deploy-artifacts'
+$repoRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+$defaultArtifactDir = Join-Path $repoRoot 'scripts\deploy-artifacts'
 
 function Write-Utf8NoBom([string]$Path, [string]$Content) {
   [System.IO.File]::WriteAllText($Path, $Content, (New-Object System.Text.UTF8Encoding($false)))
@@ -113,7 +113,7 @@ Write-Ascii $installCmd $installCmdContent
 Copy-Item -Force $SourceExe (Join-Path $packageDir $AppExeName)
 
 # IExpress SED 配置（自解压 + 执行安装脚本）
-$sedPath = Join-Path $stagingDir "cursorlike.sed"
+$sedPath = Join-Path $stagingDir "codesprite.sed"
 # 使用 IExpress 的 %FILEn% 变量，避免部分系统下直接写文件名导致“创建进程 <> 参数错误”
 $postCmd = "%FILE3%"
 

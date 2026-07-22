@@ -1,11 +1,6 @@
 import type { HTMLAttributes, InputHTMLAttributes, ReactNode, SelectHTMLAttributes, TextareaHTMLAttributes } from 'react'
 import { cn } from './cn'
 
-export function Form(props: HTMLAttributes<HTMLFormElement>) {
-  const { className, ...rest } = props
-  return <form {...rest} className={cn('ui-form', className)} />
-}
-
 export function FormField(
   props: HTMLAttributes<HTMLDivElement> & {
     label?: ReactNode

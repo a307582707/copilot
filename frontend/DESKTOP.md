@@ -68,7 +68,7 @@ Windows 安装包请使用仓库根目录脚本（唯一推荐）：
 pwsh ./scripts/build-desktop-installer-csharp-wizard.ps1
 ```
 
-默认产物：`scripts/deploy-artifacts/CodeSpriteSetup.exe`。其余 `build-desktop-installer-*.ps1` 仅为遗留参考，勿用于发版。
+默认产物：`scripts/deploy-artifacts/CodeSpriteSetup.exe`。其余安装脚本已移到 `scripts/legacy/`，仅作参考，勿用于发版。
 
 ---
 

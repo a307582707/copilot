@@ -192,7 +192,7 @@ flowchart TD
   - 统一 Esc/点击遮罩关闭策略、滚动锁定、ARIA
 - 抽象统一的 `ui/Drawer`
   - 统一右侧滑入、Header/Body/Footer
-- 抽象 `ListRow`（title/meta/actions）与 hover/focus 行为
+- 列表行统一 title/meta/actions 三段结构与 hover/focus 行为（实现时可复用 Table/现有 row 样式）
   - 降噪：默认隐藏 actions；hover/focus 显示
 - 抽象 `StatusPill`（dot + label + action）
   - 用于连接态/后端态/订阅态的统一入口

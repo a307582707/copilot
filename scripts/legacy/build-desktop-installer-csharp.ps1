@@ -11,8 +11,8 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$repoRoot = Split-Path -Parent $PSScriptRoot
-$defaultArtifactDir = Join-Path $PSScriptRoot 'deploy-artifacts'
+$repoRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+$defaultArtifactDir = Join-Path $repoRoot 'scripts\deploy-artifacts'
 
 if ([string]::IsNullOrWhiteSpace($OutExe)) { $OutExe = Join-Path $defaultArtifactDir 'CodeSpriteSetup_legacy_win_v3.exe' }
 $artifactDir = $defaultArtifactDir

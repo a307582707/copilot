@@ -222,7 +222,7 @@ Buttons: [取消] [确认支付]
 ```text
 Card: 管理员：待入账（submitted）
 TopRight: [刷新列表]
-ListRow:
+Row:
  - 订单号 + uid + 渠道 + 金额
  - 备注（pre-wrap）
  - 时间

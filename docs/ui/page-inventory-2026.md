@@ -313,8 +313,10 @@
 - **子路由（真实存在）**
   - `/admin`：总览（统计：用户总数/活跃订阅/试用到期）
   - `/admin/users`：用户列表（搜索 + 分页）
-  - `/admin/orders`：充值订单（占位）
-  - `/admin/ledger`：消费流水（占位）
+  - `/admin/beta`：Beta 费用闸门
+  - `/admin/orders`：人工入账记录
+  - `/admin/ledger`：额度流水
+  - `/admin/overseas`：海外订阅运营（独立页）
 - **关键错误态**
   - gate=forbidden：显示“无权限访问后台”
 

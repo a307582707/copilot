@@ -10,8 +10,8 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$repoRoot = Split-Path -Parent $PSScriptRoot
-$defaultArtifactDir = Join-Path $PSScriptRoot 'deploy-artifacts'
+$repoRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+$defaultArtifactDir = Join-Path $repoRoot 'scripts\deploy-artifacts'
 
 if ([string]::IsNullOrWhiteSpace($SourceExe)) {
   $SourceExe = Join-Path $repoRoot 'frontend\src-tauri\target\debug\codesprite.exe'

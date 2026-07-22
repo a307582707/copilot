@@ -91,8 +91,10 @@ stateDiagram-v2
 │ SideNav        │ Content                                    │
 │ - 总览（统计） │ route outlet                               │
 │ - 用户列表     │                                           │
-│ - 充值订单     │                                           │
-│ - 消费流水     │                                           │
+│ - Beta 费用闸门│                                           │
+│ - 人工入账记录 │                                           │
+│ - 额度流水     │                                           │
+│ - 海外订阅运营 │                                           │
 └───────────────┴───────────────────────────────────────────┘
 ```
 
@@ -143,19 +145,21 @@ Pager: [上一页] 第 P 页 [下一页]
   - 禁用/解禁按钮（需二次确认 + 审计）
   - 重置密码（企业内测可选）
 
-### 4.4 `/admin/orders` 充值订单（占位 → 目标态）
+### 4.4 `/admin/beta` Beta 费用闸门
 
-当前 Stub（占位）说明“后端接入后支持分页/搜索/导出”。
+当前实现：`AdminHome.tsx` → `AdminBetaOps`（概览统计、手动发额度、禁用/恢复）。
+
+### 4.5 `/admin/orders` 人工入账记录
+
+当前实现：拉取 `/api/admin/recharge_orders`，支持状态筛选与人工入账。
 
 目标态建议：
 
 ```text
-Title: 充值订单
+Title: 人工入账记录
 Toolbar: [状态筛选 submitted/credited/rejected] [时间范围] [搜索(订单号/用户)] [导出]
 Table:
   订单号 | 用户 | 渠道 | 金额 | 状态 | 创建时间 | 入账时间 | 操作(查看凭证/一键入账)
-Drawer:
-  订单详情（截图/备注/状态流转/审计）
 ```
 
 风险控制（必须）：
@@ -163,12 +167,14 @@ Drawer:
 - 一键入账必须二次确认
 - 所有状态变更写审计日志（谁在何时对哪个订单做了什么）
 
-### 4.5 `/admin/ledger` 消费流水（占位 → 目标态）
+### 4.6 `/admin/ledger` 额度流水
+
+当前实现：拉取 `/api/admin/ledger`。
 
 目标态建议：
 
 ```text
-Title: 消费流水
+Title: 额度流水
 Toolbar: [时间范围] [用户筛选] [entry_type筛选] [导出]
 Table:
   流水号 | 用户 | 类型 | 金额(+/-) | period | ref_id | 创建时间
@@ -178,6 +184,10 @@ Table:
 
 - 金额正负颜色一致（+success / -danger）
 - ref_id 可点击跳转到对应订单/订阅扣费记录
+
+### 4.7 `/admin/overseas` 海外订阅运营
+
+当前实现：独立页 `AdminOverseasPage.tsx`（经 `AdminGate`）。
 
 ## 5. 验收清单（/admin 视角）
 

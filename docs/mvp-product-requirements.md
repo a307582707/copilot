@@ -437,7 +437,7 @@ WebSocket /api/ssh/pty/ws?session_id=ssh_xxx
 
 | 字段 | 规格 |
 |------|------|
-| 数据源 | 现有 `cicd/scripts/bigdata_daily_inspection.py` |
+| 数据源 | 规划中（当前仓库无独立巡检脚本；资产发现见 `cicd/scripts/discover_*.py`） |
 | 更新频率 | 每日自动执行 |
 | 展示内容 | 正常运行/异常项、关键指标 |
 

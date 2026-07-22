@@ -247,7 +247,7 @@ stateDiagram-v2
 | 区域 | 建议组件 | 备注 |
 |---|---|---|
 | Sidebar Tabs | `TabPillGroup`（可复用现有 class） | 保持紧凑 pill，移动端自动收敛 |
-| 列表 Row | `ListRow`（含 hover actions） | 统一 title/meta/actions 三段结构 |
+| 列表 Row | 统一 row 样式（含 hover actions） | 统一 title/meta/actions 三段结构 |
 | Status Pill | `StatusPill` | 统一 dot + label + click 打开设置 |
 | Confirm Modal | `ui/Modal`（后续抽象） | 统一 Esc/遮罩/aria/滚动锁定 |
 | Drawer | `ui/Drawer`（后续抽象） | 统一右侧滑入、Header/Body |

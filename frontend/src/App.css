@@ -206,35 +206,6 @@
   color: var(--muted);
 }
 
-.ctxSwitcherBtn {
-  margin-top: 8px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  max-width: 220px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  background: rgba(255, 255, 255, 0.03);
-  color: rgba(255, 255, 255, 0.88);
-  padding: 6px 10px;
-  border-radius: 12px;
-  font-size: 12px;
-  cursor: pointer;
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.ctxSwitcherBtn:hover {
-  border-color: rgba(124, 92, 255, 0.50);
-  background: rgba(124, 92, 255, 0.10);
-}
-
-.ctxSwitcherCaret {
-  opacity: 0.8;
-  font-size: 11px;
-}
-
 .ctxPopover {
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -567,33 +538,6 @@
   right: 0;
   top: 42px;
   z-index: 9999;
-}
-
-.sideSearch {
-  margin: 6px 2px 10px;
-}
-
-.sideSearchInput {
-  width: 100%;
-  height: 34px;
-  padding: 0 10px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.03);
-  outline: none;
-  font-size: 12px;
-}
-
-.sideSearchInput.ui-input {
-  /* when rendered via ui/Input, keep legacy sizing */
-  height: 34px;
-  border-radius: 12px;
-  font-size: 12px;
-}
-
-.sideSearchInput:focus {
-  border-color: rgba(124, 92, 255, 0.55);
-  box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.12);
 }
 
 .sideItemActive {
@@ -1706,35 +1650,9 @@
   gap: 10px;
 }
 
-.subCard {
-  width: 100%;
-  text-align: left;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.04);
-  padding: 10px 10px;
-  border-radius: 14px;
-  cursor: pointer;
-}
-
-.subCard:hover {
-  border-color: rgba(124, 92, 255, 0.45);
-  background: rgba(124, 92, 255, 0.12);
-}
-
-.subCardPro:hover {
-  border-color: rgba(43, 213, 118, 0.45);
-  background: rgba(43, 213, 118, 0.10);
-}
-
 .subTitle {
   font-size: 12px;
   font-weight: 850;
-}
-
-.subDesc {
-  margin-top: 4px;
-  font-size: 11px;
-  color: var(--muted-2);
 }
 
 .userCardWrap {
@@ -1935,49 +1853,6 @@
 .dashCardTitle {
   font-size: 13px;
   font-weight: 850;
-}
-
-.dashBanner {
-  grid-column: span 2;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  padding: 12px 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  background: rgba(0, 0, 0, 0.18);
-}
-
-.dashBannerErr {
-  border-color: rgba(255, 77, 109, 0.35);
-  background: rgba(255, 77, 109, 0.10);
-}
-
-.dashBannerWarn {
-  border-color: rgba(255, 170, 120, 0.32);
-  background: rgba(255, 170, 120, 0.08);
-}
-
-.dashBannerTitle {
-  font-weight: 950;
-  font-size: 13px;
-}
-
-.dashBannerDesc {
-  margin-top: 4px;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.78);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.dashBannerActions {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  flex-wrap: wrap;
 }
 
 .dashGuideTitle {
@@ -2281,73 +2156,6 @@
   line-height: 1.5;
 }
 
-.recentList {
-  display: grid;
-  gap: 10px;
-}
-
-.recentItem {
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: 16px;
-  background: rgba(0, 0, 0, 0.14);
-  padding: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  cursor: pointer;
-  transition: background 120ms ease, border-color 120ms ease;
-}
-
-.recentItem:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.16);
-}
-
-.recentIcon {
-  width: 34px;
-  height: 34px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.recentTitle {
-  font-size: 13px;
-  font-weight: 850;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.recentMeta {
-  margin-top: 2px;
-  font-size: 12px;
-  color: var(--muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.recentBtn {
-  border: 1px solid rgba(43, 213, 118, 0.45);
-  background: rgba(43, 213, 118, 0.12);
-  padding: 8px 10px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 850;
-  color: rgba(255, 255, 255, 0.92);
-  white-space: nowrap;
-}
-
-.recentBtn:hover {
-  background: rgba(43, 213, 118, 0.18);
-}
-
 .recentEmpty {
   font-size: 12px;
   color: var(--muted-2);
@@ -2364,11 +2172,7 @@
   .dashCardSpan2 {
     grid-column: span 1;
   }
-  .dashBanner {
-    grid-column: span 1;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+
   .statGrid {
     grid-template-columns: 1fr 1fr;
   }
@@ -2742,41 +2546,6 @@
 
 .toastAction:hover {
   background: rgba(124, 92, 255, 0.30);
-}
-
-.footerBtn {
-  width: 100%;
-  text-align: left;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.03);
-  padding: 10px 10px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 12px;
-  color: var(--text);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.footerBtn:hover {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.footerHint {
-  font-size: 11px;
-  color: var(--muted-2);
-}
-
-.footerRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-
-.footerBtnSmall {
-  padding: 10px 10px;
-  align-items: flex-start;
 }
 
 .sessionItem {
@@ -3158,25 +2927,6 @@
   box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.12);
 }
 
-.sendBtn {
-  cursor: pointer;
-  border: 1px solid rgba(124, 92, 255, 0.45);
-  background: rgba(124, 92, 255, 0.18);
-  color: var(--text);
-  padding: 10px 14px;
-  border-radius: 12px;
-  font-weight: 650;
-}
-
-.sendBtn:hover {
-  background: rgba(124, 92, 255, 0.24);
-}
-
-.sendBtn:disabled {
-  cursor: not-allowed;
-  opacity: 0.55;
-}
-
 .hint {
   max-width: 980px;
   margin: 10px auto 0;
@@ -3242,25 +2992,6 @@
 /* leave room for the stop button inside the textarea */
 .composerInput .textarea {
   padding-right: 64px;
-}
-
-.stopBtn {
-  position: absolute;
-  right: 8px;
-  bottom: 8px;
-  height: 28px;
-  padding: 0 10px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 80, 80, 0.55);
-  background: rgba(255, 80, 80, 0.14);
-  color: var(--text);
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 650;
-}
-
-.stopBtn:hover {
-  background: rgba(255, 80, 80, 0.20);
 }
 
 /* Input with inlined action button (send/stop) */
@@ -3506,39 +3237,6 @@
   align-items: center;
 }
 
-.wsConnCard {
-  border: 1px solid rgba(255, 170, 120, 0.32);
-  background: rgba(255, 170, 120, 0.08);
-  border-radius: 14px;
-  padding: 12px 12px;
-  margin-bottom: 10px;
-  /* UX: keep reconnect banner visible while scrolling long chats */
-  position: sticky;
-  top: 10px;
-  z-index: 20;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
-}
-
-.wsConnCardTitle {
-  font-weight: 900;
-  font-size: 13px;
-  color: rgba(255, 220, 200, 0.98);
-}
-
-.wsConnCardDesc {
-  margin-top: 6px;
-  font-size: 12px;
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.78);
-}
-
-.wsConnCardActions {
-  margin-top: 10px;
-  display: flex;
-  gap: 8px;
-}
-
 .workBody {
   padding: 18px 16px;
   overflow: auto;
@@ -3772,14 +3470,10 @@ html[data-theme='light'] .wsImagePreviewChip,
 html[data-theme='light'] .workCard,
 html[data-theme='light'] .detailCard,
 html[data-theme='light'] .dashCard,
-html[data-theme='light'] .dashBanner,
 html[data-theme='light'] .statItem,
 html[data-theme='light'] .quickCard,
 html[data-theme='light'] .dashRow,
-html[data-theme='light'] .recentItem,
 html[data-theme='light'] .userCard,
-html[data-theme='light'] .subCard,
-html[data-theme='light'] .footerBtn,
 html[data-theme='light'] .sessionItem,
 html[data-theme='light'] .sideGroup,
 html[data-theme='light'] .mgrPane,
@@ -3817,9 +3511,7 @@ html[data-theme='light'] .wsChatVResizeHandle {
   );
 }
 
-html[data-theme='light'] .dashBanner,
 html[data-theme='light'] .quickCard,
-html[data-theme='light'] .recentItem,
 html[data-theme='light'] .statItem,
 html[data-theme='light'] .mgrHostItem,
 html[data-theme='light'] .treeItem:hover,
@@ -3827,8 +3519,7 @@ html[data-theme='light'] .assetGroupHeaderBtn:hover,
 html[data-theme='light'] .assetRow:hover,
 html[data-theme='light'] .sideItem:hover,
 html[data-theme='light'] .sessionItem:hover,
-html[data-theme='light'] .userCard:hover,
-html[data-theme='light'] .footerBtn:hover {
+html[data-theme='light'] .userCard:hover {
   background: #f8fafc;
 }
 
@@ -3851,11 +3542,9 @@ html[data-theme='light'] .modalOverlay {
   background: rgba(15, 23, 42, 0.16);
 }
 
-html[data-theme='light'] .ctxSwitcherBtn,
 html[data-theme='light'] .newChatBtn,
 html[data-theme='light'] .tabBtn,
 html[data-theme='light'] .sideAddBtn,
-html[data-theme='light'] .sideSearchInput,
 html[data-theme='light'] .fieldInput,
 html[data-theme='light'] .fieldSelect,
 html[data-theme='light'] .fieldTextarea,
@@ -3874,7 +3563,6 @@ html[data-theme='light'] .wsCtxPickerItemActive {
   border-color: rgba(124, 92, 255, 0.18);
 }
 
-html[data-theme='light'] .ctxSwitcherBtn:hover,
 html[data-theme='light'] .newChatBtn:hover,
 html[data-theme='light'] .tabBtn:hover,
 html[data-theme='light'] .sideAddBtn:hover,
@@ -3888,19 +3576,16 @@ html[data-theme='light'] .mobileSidebarOpenBtn:hover {
 html[data-theme='light'] .dashCrumbBtn,
 html[data-theme='light'] .workHeaderCrumb,
 html[data-theme='light'] .h2,
-html[data-theme='light'] .dashBannerDesc,
 html[data-theme='light'] .dashGuideStepDesc,
 html[data-theme='light'] .dashGuideLock,
 html[data-theme='light'] .dashRowTags,
 html[data-theme='light'] .toolMeta,
 html[data-theme='light'] .toolBody,
-html[data-theme='light'] .workCardText,
-html[data-theme='light'] .wsConnCardDesc {
+html[data-theme='light'] .workCardText {
   color: #64748b;
 }
 
 html[data-theme='light'] .toolTitle,
-html[data-theme='light'] .dashBannerTitle,
 html[data-theme='light'] .workCardTitle,
 html[data-theme='light'] .h1,
 html[data-theme='light'] .dashTitle,
@@ -3918,10 +3603,6 @@ html[data-theme='light'] .recentEmpty,
 html[data-theme='light'] .sideEmpty {
   background: #f8fafc;
   border-color: #e2e8f0;
-}
-
-html[data-theme='light'] .wsConnCard {
-  box-shadow: 0 12px 30px rgba(251, 146, 60, 0.14);
 }
 
 /* ========================================
